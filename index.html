@@ -3,257 +3,433 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Velora — Money Board</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velora | لوحة أحلامي</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&family=DM+Sans:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
 
 :root{
-  --bg:#f8f5ef;--paper:#fffdf9;--ink:#27382e;
-  --muted:#85877d;--line:#e9e2d7;--gold:#d7b36d;
-  --green:#65866a;--pink:#f3dfdc;--sage:#e4eadf;
-  --lav:#e9e3f1;--yellow:#f5ebca;
+ --cream:#fffaf5;--pink:#f6e4e2;--rose:#c98283;
+ --green:#829b83;--gold:#c8a65e;--ink:#493c3a;
+ --muted:#93827e;--white:#fffdfb;--line:#eadbd4;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Tajawal,sans-serif}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer;border:0}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.app{max-width:1500px;margin:auto;padding:22px}
-header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:25px}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{width:46px;height:46px;border-radius:16px;background:#293c30;color:#f0d6a0;display:grid;place-items:center;font:800 24px 'DM Sans'}
-.brand h1{font:800 23px 'DM Sans';margin:0}
-.brand p{font-size:12px;color:var(--muted);margin:3px 0}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn{border:1px solid var(--line);border-radius:13px;padding:10px 15px;background:var(--paper);color:var(--ink)}
-.btn.dark{background:var(--ink);color:white}
-.welcome{background:#293c30;color:white;border-radius:27px;padding:30px;position:relative;overflow:hidden;margin-bottom:24px}
-.welcome:after{content:"✳";position:absolute;font-size:190px;color:#ffffff09;left:25px;top:-60px;pointer-events:none}
-.welcome small{color:#e9cd91;letter-spacing:2px;font:700 11px 'DM Sans'}
-.welcome h2{font-size:clamp(27px,4vw,42px);margin:10px 0}
-.welcome p{color:#d7e0d5;margin:0;line-height:1.8}
-.welcome-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;position:relative;z-index:1}
-.period{display:flex;gap:4px;background:#ffffff12;padding:5px;border-radius:12px;flex-shrink:0}
-.period button{padding:8px 12px;border-radius:9px;background:transparent;color:white}
-.period button.active{background:#f0d7a1;color:#293c30;font-weight:800}
-.board-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 3px 15px}
-.board-title h2{font-size:22px;margin:0}
-.board-title p{font-size:12px;color:var(--muted);margin:4px 0}
-.pill{background:#eee7d9;padding:8px 12px;border-radius:20px;font-size:12px;color:#79613c}
-.board{columns:3 290px;column-gap:17px}
-.pin{display:inline-block;vertical-align:top;width:100%;break-inside:avoid;margin:0 0 17px;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 5px 20px #263b2b07}
-.pin-body{padding:20px}
-.pin-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}
-.pin-head h3{font-size:17px;margin:0}
-.emoji{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;font-size:20px;flex-shrink:0}
-.sage{background:var(--sage)}.pink{background:var(--pink)}.lav{background:var(--lav)}.yellow{background:var(--yellow)}
-.label{font-size:12px;color:var(--muted)}
-.big-number{font:800 clamp(23px,2.5vw,32px) 'DM Sans';direction:ltr;text-align:right;overflow-wrap:anywhere;margin:9px 0}
-.big-number small{font:500 13px Tajawal;color:var(--muted)}
-.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
-.mini{padding:13px;border-radius:15px;background:#f6f3ec}
-.mini span{font-size:11px;color:var(--muted)}
-.mini strong{display:block;font:700 16px 'DM Sans';direction:ltr;text-align:right;margin-top:7px;overflow-wrap:anywhere}
-.progress{height:9px;border-radius:20px;background:#eee9df;overflow:hidden;margin:12px 0 8px}
-.progress span{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#729578,#d9b56d);transition:width .3s}
-.progress-label{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}
-.field{display:grid;gap:6px;margin-bottom:12px}
-.field label{font-size:12px;font-weight:700;color:#73796e}
-.field input,.field select{width:100%;min-width:0;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fffefa;color:var(--ink)}
-.type{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
-.type button{padding:11px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--muted);font-weight:700}
-.type button.active[data-kind="income"]{background:var(--sage);color:#426b4b}
-.type button.active[data-kind="expense"]{background:var(--pink);color:#b56660}
-.submit{width:100%;padding:13px;border-radius:12px;background:var(--ink);color:white;font-weight:800}
-.submit:hover,.btn.dark:hover{background:#45624e}
-.chartbox{display:flex;align-items:center;gap:17px}
-.donut{width:125px;height:125px;flex-shrink:0;position:relative}
-.donut svg{width:100%;height:100%;transform:rotate(-90deg)}
-.donut-center{position:absolute;inset:0;display:grid;align-content:center;text-align:center}
-.donut-center b{font:800 20px 'DM Sans'}
-.donut-center span{font-size:10px;color:var(--muted)}
-.legend{display:grid;gap:9px;min-width:0;flex:1}
-.legend-row{display:flex;align-items:center;gap:7px;font-size:12px}
-.dot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
-.legend-row b{margin-right:auto;font:700 11px 'DM Sans';direction:ltr;white-space:nowrap}
-.tx-list{display:grid}
-.tx{display:grid;grid-template-columns:37px minmax(0,1fr) auto 27px;gap:9px;align-items:center;padding:12px 0;border-bottom:1px solid #f0ece4}
-.tx:last-child{border:0}
-.tx-icon{width:37px;height:37px;border-radius:12px;background:#f2eee6;display:grid;place-items:center;font-size:17px}
-.tx-name{font-size:13px;font-weight:700;overflow-wrap:anywhere}
-.tx-meta{font-size:10px;color:var(--muted);margin-top:4px}
-.amount{font:700 12px 'DM Sans';direction:ltr;white-space:nowrap}
-.plus{color:var(--green)}.minus{color:#bf726b}
-.delete{background:#f7ece8;color:#b66d65;width:27px;height:27px;border-radius:9px}
-.search{width:100%;padding:10px;border:1px solid var(--line);border-radius:11px;margin-bottom:10px;background:#fffefa}
-.goal-form{display:grid;grid-template-columns:1fr auto;gap:7px;margin-bottom:12px}
-.goal-form input{width:100%;min-width:0;padding:11px;border:1px solid var(--line);border-radius:11px}
-.goal-form button{background:var(--sage);color:#45684b;padding:0 12px;border-radius:11px}
-.goal{border:1px solid var(--line);border-radius:15px;padding:13px;margin-top:10px}
-.goal-top,.goal-meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.goal-top b{font-size:13px;overflow-wrap:anywhere}
-.goal-top button{background:transparent;color:#b66d65}
-.goal-meta{font-size:11px;color:var(--muted);margin:10px 0}
-.goal-meta b{color:var(--ink)}
-.smallbtn{background:var(--sage);color:#426b4b;padding:6px 8px;border-radius:8px;font-size:11px}
-.note{width:100%;min-height:100px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fffefa;color:var(--ink)}
-.empty{text-align:center;color:var(--muted);padding:18px 8px;font-size:13px;line-height:1.8}
-footer{text-align:center;color:#99998e;font-size:11px;line-height:1.8;padding:24px}
-.toast{position:fixed;bottom:20px;left:20px;background:#293c30;color:white;padding:13px 18px;border-radius:13px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:5}
-.toast.show{opacity:1;transform:none}
-@media(max-width:700px){.app{padding:12px}header{align-items:flex-start}.welcome{padding:22px}.welcome-row{display:block}.period{width:max-content;margin-top:17px}.board{columns:2 250px}.actions .quiet{display:none}}
-@media(max-width:420px){.board{columns:1}.brand h1{font-size:20px}.btn{padding:9px 10px}.chartbox{gap:10px}.donut{width:105px;height:105px}}
+body{
+ margin:0;color:var(--ink);font-family:'Cairo',sans-serif;
+ background:
+ radial-gradient(ellipse at 5% 8%,#f6dfd9 0,transparent 28%),
+ radial-gradient(ellipse at 95% 45%,#e7e9db 0,transparent 28%),
+ linear-gradient(135deg,#fffaf5,#f8eee8 55%,#fff8f1);
+ min-height:100vh;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.topbar{
+ position:sticky;top:0;z-index:5;background:#fffaf5eF;
+ backdrop-filter:blur(16px);border-bottom:1px solid var(--line);
+ padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-heart{font-size:32px;color:var(--gold)}
+.brand h1{font-family:'Playfair Display',serif;font-size:29px;margin:0;letter-spacing:1px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1px}
+.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{
+ border:0;border-radius:30px;padding:10px 17px;
+ background:var(--rose);color:white;box-shadow:0 5px 14px #c9828325;
+}
+.btn.secondary{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn.green{background:var(--green)}
+.hero{
+ margin:24px auto 20px;width:90%;max-width:1450px;min-height:230px;
+ border-radius:28px;overflow:hidden;position:relative;
+ background:linear-gradient(90deg,#fff8f0dd,#f7e6dfaa),
+ url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1800&q=85') center 52%/cover;
+ display:flex;align-items:center;padding:35px 5%;
+ box-shadow:0 10px 35px #8a66500c;
+}
+.hero-content{max-width:580px}
+.eyebrow{color:#9c7773;letter-spacing:2px;font-size:12px}
+.hero h2{font-size:clamp(28px,4vw,45px);line-height:1.45;margin:10px 0}
+.hero p{color:#7d6965;line-height:2;margin:0 0 17px}
+.hero .quote{font-family:'Playfair Display',serif;color:#9b7271;font-style:italic}
+.wrap{width:90%;max-width:1450px;margin:auto}
+.summary{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 28px;
+}
+.stat,.panel{
+ background:#fffdf9e8;border:1px solid #ebddd5;
+ border-radius:20px;padding:19px;box-shadow:0 7px 24px #65483a08;
+}
+.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+.stat-icon{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:var(--pink);font-size:20px}
+.stat-value{font-size:clamp(19px,2vw,28px);font-weight:800;margin-top:12px;overflow-wrap:anywhere}
+.stat-foot{font-size:12px;color:var(--muted);margin-top:3px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:28px 0 15px}
+.section-head h2{margin:0;font-size:24px}
+.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.chip{background:#fffaf6;border:1px solid var(--line);color:var(--ink);border-radius:30px;padding:7px 14px;font-size:12px}
+.chip.active{background:var(--green);color:white;border-color:var(--green)}
+.board{columns:4 245px;column-gap:18px}
+.goal{
+ display:inline-block;width:100%;break-inside:avoid;margin:0 0 18px;
+ background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+ box-shadow:0 8px 22px #65483a0a;transition:transform .2s,box-shadow .2s;
+}
+.goal:hover{transform:translateY(-3px);box-shadow:0 12px 28px #65483a12}
+.goal-image{height:180px;position:relative;background:var(--pink);overflow:hidden}
+.goal-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.goal:hover .goal-image img{transform:scale(1.04)}
+.goal-image:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#382a2518);pointer-events:none}
+.goal-category{position:absolute;top:12px;right:12px;z-index:1;background:#fffaf0eF;border-radius:30px;padding:5px 10px;font-size:11px}
+.goal-body{padding:16px}
+.goal-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.goal-title{font-size:17px;font-weight:800;margin:0 0 5px}
+.goal-note{font-size:12px;color:var(--muted);margin:0 0 14px;overflow-wrap:anywhere}
+.menu-btn{border:0;background:#f7eeea;border-radius:50%;width:31px;height:31px;color:var(--ink);flex-shrink:0}
+.money-line{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.money-line strong{color:var(--ink);font-size:14px}
+.progress-track{height:9px;background:#eee9e5;border-radius:20px;margin:10px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#809b80,#b4c5a4);border-radius:20px;transition:width .3s}
+.progress-foot{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-top:5px}
+.progress-foot b{color:#6c8a70}
+.goal-actions{display:flex;gap:7px;margin-top:15px}
+.goal-actions button{flex:1;font-size:12px;padding:8px 5px;border:1px solid var(--line);border-radius:11px;background:#fffaf7;color:var(--ink)}
+.goal-actions .save-btn{background:#eaf0e6;border-color:#eaf0e6}
+.add-card{
+ display:flex;width:100%;min-height:250px;break-inside:avoid;margin-bottom:18px;
+ flex-direction:column;align-items:center;justify-content:center;text-align:center;
+ background:#f8e9e4a6;border:1.5px dashed #d8aaa5;border-radius:20px;color:#9b6968;padding:20px;
+}
+.add-card span{font-size:43px;line-height:1}
+.add-card strong{margin:12px 0 3px}
+.add-card small{color:var(--muted)}
+.bottom-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:17px;margin:30px 0}
+.panel h3{margin:0 0 15px}
+.budget-row{margin:13px 0}
+.budget-label{display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.budget-label span:last-child{color:var(--muted)}
+input,select{
+ width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;
+ background:#fffdfb;color:var(--ink);outline:none;
+}
+input:focus,select:focus{border-color:var(--rose);box-shadow:0 0 0 3px #c9828318}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;margin-bottom:5px;color:#776562}
+.full{grid-column:1/-1}
+.modal{
+ display:none;position:fixed;inset:0;z-index:20;background:#33221f80;
+ align-items:center;justify-content:center;padding:18px;overflow-y:auto;
+}
+.modal.open{display:flex}
+.modal-box{
+ width:100%;max-width:570px;max-height:92vh;overflow-y:auto;
+ background:var(--cream);border-radius:24px;padding:24px;
+ box-shadow:0 20px 80px #30201f30;
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.modal-head h3{margin:0}
+.close{border:0;background:#f1e4df;border-radius:50%;width:35px;height:35px;font-size:18px}
+.form-buttons{display:flex;gap:10px;margin-top:15px}
+.form-buttons button{flex:1}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+footer{text-align:center;padding:30px 15px 38px;color:#9a7b74;font-size:12px}
+.toast{
+ position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);
+ background:#4e6650;color:white;padding:12px 20px;border-radius:30px;
+ opacity:0;pointer-events:none;transition:.25s;z-index:50;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.summary{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom-grid{grid-template-columns:1fr}}
+@media(max-width:550px){
+ .topbar{padding:12px 5%}.brand h1{font-size:24px}.top-actions .secondary{display:none}
+ .hero{width:92%;padding:24px;min-height:210px}
+ .wrap{width:92%}.board{columns:2 145px;column-gap:10px}
+ .goal{margin-bottom:10px;border-radius:15px}.goal-image{height:135px}
+ .goal-body{padding:11px}.goal-title{font-size:14px}.goal-note{font-size:11px}
+ .money-line{font-size:10px}.money-line strong{font-size:12px}
+ .goal-actions{flex-direction:column}.goal-actions button{width:100%}
+ .summary{gap:9px}.stat{padding:13px}.stat-value{font-size:19px}
+ .form-grid{grid-template-columns:1fr}.full{grid-column:auto}
+}
 </style>
 </head>
 <body>
-<div class="app">
-<header>
-  <div class="brand"><div class="logo">V</div><div><h1>velora</h1><p>Your money moodboard ✨</p></div></div>
-  <div class="actions">
-    <button class="btn quiet" id="export">↧ نسخة احتياطية</button>
-    <button class="btn quiet" id="reset">إعادة ضبط</button>
-    <button class="btn dark" id="jump">＋ أضيفي عملية</button>
-  </div>
+
+<header class="topbar">
+ <div class="brand">
+  <span class="brand-heart">♥</span>
+  <div><h1>Velora</h1><small>Your Dreams, Your Budget</small></div>
+ </div>
+ <div class="top-actions">
+  <button class="btn secondary" onclick="exportData()">↓ تصدير بياناتي</button>
+  <button class="btn" onclick="openModal()">＋ هدف جديد</button>
+ </div>
 </header>
 
-<section class="welcome">
-  <div class="welcome-row">
-    <div><small>YOUR LIFE. YOUR MONEY. YOUR WAY.</small><h2>لوحتك المالية، على ذوقك 🤍</h2><p id="caption">رتّبي أموالك، تابعي أهدافك، واصنعي مساحة لمستقبلك.</p></div>
-    <div class="period"><button class="active" data-period="month">شهري</button><button data-period="year">سنوي</button><button data-period="all">الكل</button></div>
-  </div>
+<section class="hero">
+ <div class="hero-content">
+  <div class="eyebrow">A LITTLE SAVING, A LOT OF DREAMING ✧</div>
+  <h2>أحلامك تستحق<br>كل خطوة صغيرة 🤍</h2>
+  <p>هذه مساحتك الخاصة لتخططي، تجمعي، وتشاهدي أحلامك تقترب يومًا بعد يوم.</p>
+  <div class="quote">Small steps, big dreams.</div>
+ </div>
 </section>
 
-<div class="board-title"><div><h2>My money board ✦</h2><p>كل بطاقاتك المالية في مكان واحد</p></div><span class="pill" id="periodLabel">هذا الشهر</span></div>
+<main class="wrap">
+ <section class="summary">
+  <div class="stat">
+   <div class="stat-top"><span>إجمالي أهدافي</span><span class="stat-icon">♡</span></div>
+   <div class="stat-value" id="totalTargets">0 دج</div><div class="stat-foot">قيمة كل أحلامك معًا</div>
+  </div>
+  <div class="stat">
+   <div class="stat-top"><span>ما جمعته حتى الآن</span><span class="stat-icon" style="background:#e7efe4">🌱</span></div>
+   <div class="stat-value" id="totalSaved">0 دج</div><div class="stat-foot">كل مبلغ يقرّبك من حلمك</div>
+  </div>
+  <div class="stat">
+   <div class="stat-top"><span>المبلغ المتبقي</span><span class="stat-icon" style="background:#f7edce">✨</span></div>
+   <div class="stat-value" id="totalRemaining">0 دج</div><div class="stat-foot">الطريق الباقي لتحقيق أهدافك</div>
+  </div>
+  <div class="stat">
+   <div class="stat-top"><span>التقدم الإجمالي</span><span class="stat-icon" style="background:#e9e4f5">🌸</span></div>
+   <div class="stat-value" id="totalProgress">0%</div><div class="stat-foot">أنتِ قادرة على الوصول!</div>
+  </div>
+ </section>
 
-<main class="board">
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>💚 دخلي</h3><span class="emoji sage">↗</span></div>
-    <div class="label">إجمالي الدخل خلال الفترة</div><div class="big-number" id="income">0 <small>دج</small></div>
-    <div class="mini-stats"><div class="mini"><span>عدد العمليات</span><strong id="incomeCount">0</strong></div><div class="mini"><span>متوسط الدخل</span><strong id="avgIncome">0</strong></div></div>
-  </div></section>
+ <div class="section-head">
+  <div><h2>لوحة أحلامي <span style="color:#c98283">♡</span></h2>
+  <p>كل ما تتمنينه، في مكان واحد وبأسلوبك الخاص.</p></div>
+  <button class="btn" onclick="openModal()">＋ أضيفي حلمًا</button>
+ </div>
 
-  <section class="pin"><div class="pin-body" style="background:#f4e2de">
-    <div class="pin-head"><h3>🌸 مصروفاتي</h3><span class="emoji pink">↘</span></div>
-    <div class="label">إجمالي ما صُرف خلال الفترة</div><div class="big-number" id="expense">0 <small>دج</small></div>
-    <div class="mini-stats"><div class="mini"><span>عدد العمليات</span><strong id="expenseCount">0</strong></div><div class="mini"><span>متوسط المصروف</span><strong id="avgExpense">0</strong></div></div>
-  </div></section>
+ <div class="filters" id="filters">
+  <button class="chip active" data-filter="الكل">كل الأحلام</button>
+  <button class="chip" data-filter="تقنية">تقنية</button>
+  <button class="chip" data-filter="سفر">سفر</button>
+  <button class="chip" data-filter="جمال">جمال</button>
+  <button class="chip" data-filter="ملابس">ملابس</button>
+  <button class="chip" data-filter="منزل">منزل</button>
+  <button class="chip" data-filter="دراسة">دراسة</button>
+  <button class="chip" data-filter="أخرى">أخرى</button>
+ </div>
 
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>✨ المتبقي لكِ</h3><span class="emoji yellow">♡</span></div>
-    <div class="label">الدخل ناقص المصروفات</div><div class="big-number" id="balance">0 <small>دج</small></div>
-    <div id="balanceMessage" class="sub">أضيفي عملياتك لتري الصورة كاملة.</div>
-  </div></section>
+ <section class="board" id="board"></section>
 
-  <section class="pin" id="addCard"><div class="pin-body">
-    <div class="pin-head"><h3>＋ إضافة عملية</h3><span class="emoji lav">✎</span></div>
-    <form id="txForm">
-      <div class="type"><button type="button" class="active" data-kind="income">＋ دخل</button><button type="button" data-kind="expense">− مصروف</button></div>
-      <div class="field"><label for="title">اسم العملية</label><input id="title" required maxlength="80" placeholder="راتب، قهوة، مواصلات..."></div>
-      <div class="field"><label for="amount">المبلغ بالدينار</label><input id="amount" type="number" min=".01" step=".01" required placeholder="مثلاً 2500"></div>
-      <div class="field"><label for="category">التصنيف</label><select id="category"><option>راتب</option><option>عمل حر</option><option>منحة</option><option>طعام</option><option>مواصلات</option><option>دراسة</option><option>سكن</option><option>صحة</option><option>تسوق</option><option>ترفيه</option><option>فواتير</option><option>ادخار</option><option>أخرى</option></select></div>
-      <div class="field"><label for="date">التاريخ</label><input id="date" type="date" required></div>
-      <button class="submit">حفظ العملية ✨</button>
-    </form>
-  </div></section>
-
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>🎨 خريطة الإنفاق</h3><span class="emoji yellow">◉</span></div>
-    <div class="chartbox"><div class="donut"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" fill="none" stroke="#eee8dc" stroke-width="13"/><g id="arcs"></g></svg><div class="donut-center"><b id="donutTotal">0</b><span>المصروفات</span></div></div><div class="legend" id="legend"><div class="empty">أضيفي مصروفاتك أولًا.</div></div></div>
-  </div></section>
-
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>🪴 ميزانية الشهر</h3><span class="emoji sage">⌁</span></div>
-    <div class="field"><label for="budget">حدّ الإنفاق الشهري (دج)</label><input id="budget" type="number" min="0" step="100" placeholder="مثلاً 30000"></div>
-    <div class="progress"><span id="budgetBar" style="width:0"></span></div>
-    <div class="progress-label"><span id="budgetPct">لم تبدئي بعد</span><b id="budgetLeft">0 دج</b></div>
-    <p class="sub" id="budgetMessage">حددي ميزانيتك لمتابعة التقدم.</p>
-  </div></section>
-
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>🎯 أحلام أريد تحقيقها</h3><span class="emoji pink">♡</span></div>
-    <form id="goalForm"><div class="field"><label for="goalName">اسم الهدف</label><input id="goalName" required maxlength="60" placeholder="حاسوب، سفر، مشروع..."></div><div class="field"><label for="target">المبلغ المستهدف (دج)</label><input id="target" type="number" min="1" required placeholder="100000"></div><div class="field"><label for="saved">المبلغ المدخر حاليًا</label><input id="saved" type="number" min="0" value="0" placeholder="0"></div><button class="submit">＋ إضافة هدف</button></form>
-    <div id="goals"><div class="empty">أول هدف يبدأ بحلم صغير 💗</div></div>
-  </div></section>
-
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>🧾 آخر عملياتي</h3><span class="emoji lav">☷</span></div>
-    <input class="search" id="search" placeholder="ابحثي في العمليات...">
-    <select class="search" id="filter" aria-label="تصفية العمليات"><option value="all">كل العمليات</option><option value="income">الدخل فقط</option><option value="expense">المصروفات فقط</option></select>
-    <div id="transactions" class="tx-list"><div class="empty">ستظهر عملياتك هنا.</div></div>
-  </div></section>
-
-  <section class="pin"><div class="pin-body">
-    <div class="pin-head"><h3>📝 ملاحظات لنفسي</h3><span class="emoji yellow">✿</span></div>
-    <textarea class="note" id="notes" placeholder="هذا الشهر سأوفر مبلغًا إضافيًا، وأقلل مصاريف التسوق..."></textarea>
-    <p class="sub">تُحفظ الملاحظات تلقائيًا في هذا المتصفح.</p>
-  </div></section>
+ <section class="bottom-grid">
+  <div class="panel">
+   <h3>🌷 خطتي للادخار</h3>
+   <p style="color:var(--muted);font-size:13px;line-height:1.9">حددي المبلغ الذي تريدين ادخاره كل شهر، وسنحسب لك المدة التقريبية للوصول إلى أحلامك.</p>
+   <div class="field"><label for="monthlySaving">كم أستطيع ادخار شهريًا؟ (دج)</label>
+    <input type="number" id="monthlySaving" min="0" step="100" placeholder="مثال: 10000"></div>
+   <div class="budget-row"><div class="budget-label"><span>المتبقي لجميع أهدافك</span><strong id="planRemaining">0 دج</strong></div></div>
+   <div class="budget-row"><div class="budget-label"><span>المدة التقديرية</span><strong id="planTime">—</strong></div></div>
+   <p style="font-size:11px;color:var(--muted)">تقدير تقريبي بافتراض تخصيص المبلغ الشهري لهذه الأهداف.</p>
+  </div>
+  <div class="panel">
+   <h3>💌 رسالة لنفسي</h3>
+   <p style="line-height:2;color:#806d68">لا يلزم أن تحققي كل شيء اليوم. يكفي أن تبدئي، وأن تستمري بخطوات صغيرة. أحلامك ليست بعيدة كما تبدو. ♡</p>
+   <div class="field"><label for="myNote">ملاحظتي الخاصة</label>
+    <input id="myNote" placeholder="اكتبي أمنية أو تذكيرًا لنفسك..."></div>
+   <button class="btn green" onclick="saveNote()">حفظ ملاحظتي ♡</button>
+  </div>
+ </section>
 </main>
-<footer>VELORA · YOUR MONEY, YOUR FUTURE ✨<br>بياناتك محفوظة في متصفحك فقط. صدّري نسخة احتياطية من حين لآخر.</footer>
-</div>
+
+<footer>Made with ♡ for your dreams · Velora</footer>
 <div class="toast" id="toast"></div>
 
+<div class="modal" id="goalModal">
+ <div class="modal-box">
+  <div class="modal-head"><h3 id="modalTitle">✨ أضيفي حلمًا جديدًا</h3>
+   <button class="close" onclick="closeModal()">×</button></div>
+  <form id="goalForm">
+   <input type="hidden" id="editId">
+   <div class="form-grid">
+    <div class="field"><label for="goalName">اسم الهدف *</label>
+     <input id="goalName" required maxlength="70" placeholder="مثال: حاسوبي الجديد"></div>
+    <div class="field"><label for="goalCategory">التصنيف</label>
+     <select id="goalCategory">
+      <option value="تقنية">💻 تقنية</option><option value="سفر">✈️ سفر</option>
+      <option value="جمال">💄 جمال وعناية</option><option value="ملابس">👗 ملابس</option>
+      <option value="منزل">🏡 منزل</option><option value="دراسة">📚 دراسة وكتب</option>
+      <option value="أخرى">🌸 أخرى</option>
+     </select></div>
+    <div class="field"><label for="goalPrice">السعر الكامل (دج) *</label>
+     <input id="goalPrice" type="number" min="1" step="1" required placeholder="مثال: 85000"></div>
+    <div class="field"><label for="goalSaved">المبلغ الذي جمعته (دج)</label>
+     <input id="goalSaved" type="number" min="0" step="1" value="0" required placeholder="مثال: 15000"></div>
+    <div class="field full"><label for="goalImage">رابط صورة الهدف (اختياري)</label>
+     <input id="goalImage" type="url" placeholder="https://..."></div>
+    <div class="field full"><label for="goalNote">ملاحظات (اختياري)</label>
+     <input id="goalNote" maxlength="160" placeholder="اللون، الموديل، المتجر..."></div>
+   </div>
+   <p style="font-size:12px;color:var(--muted)">💗 يمكنكِ تعديل السعر والمدخرات في أي وقت. ستُحسب قيمة المتبقي تلقائيًا.</p>
+   <div class="form-buttons">
+    <button class="btn" type="submit">حفظ الهدف ♡</button>
+    <button class="btn secondary" type="button" onclick="closeModal()">إلغاء</button>
+   </div>
+  </form>
+ </div>
+</div>
+
 <script>
-(()=>{
-const $=id=>document.getElementById(id),KEY='velora-pinterest-board-v1';
-const colors=['#64876b','#d7ae68','#ce7d76','#8299b5','#a394c3','#d4a2b7','#7eaaa1','#bd9c71','#9ba68e'];
-const icons={'راتب':'💼','عمل حر':'💻','منحة':'🎓','طعام':'🥗','مواصلات':'🚕','دراسة':'📚','سكن':'🏡','صحة':'🩺','تسوق':'🛍️','ترفيه':'🎟️','فواتير':'🧾','ادخار':'🐷','أخرى':'✨'};
-const now=new Date(),dateStr=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-$('date').value=dateStr(now);
-let s={transactions:[],goals:[],budget:0,notes:'',period:'month'},kind='income';
-try{s={...s,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){notify('تعذر الحفظ؛ صدّري نسخة احتياطية.')}}
-function notify(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>$('toast').classList.remove('show'),2200)}
-function money(n){return new Intl.NumberFormat('fr-DZ',{maximumFractionDigits:2}).format(+n||0)+' دج'}
-function compact(n){n=+n||0;return n>=1e6?(n/1e6).toFixed(1)+'m':n>=1e3?(n/1e3).toFixed(1)+'k':new Intl.NumberFormat('fr-DZ',{maximumFractionDigits:0}).format(n)}
-function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function included(t){const d=new Date(t.date+'T12:00:00');return s.period==='all'||(s.period==='year'?d.getFullYear()===now.getFullYear():d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth())}
+const KEY='velora_dream_board_v1';
+const defaultGoals=[
+ {id:'laptop',name:'حاسوب محمول',category:'تقنية',price:120000,saved:15000,note:'للدراسة والعمل ومشاريعي المستقبلية',image:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85'},
+ {id:'passport',name:'رحلة أحلامي',category:'سفر',price:200000,saved:30000,note:'مغامرة جديدة وذكريات جميلة',image:'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=85'},
+ {id:'makeup',name:'مجموعة مكياج',category:'جمال',price:25000,saved:8000,note:'ألواني المفضلة ومنتجاتي الجميلة',image:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=85'},
+ {id:'clothes',name:'ملابس أنيقة',category:'ملابس',price:35000,saved:10000,note:'قطع راقية لخزانة أحلامي',image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85'},
+ {id:'pajamas',name:'بيجامات ناعمة',category:'ملابس',price:12000,saved:4000,note:'راحة وأناقة في البيت',image:'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85'},
+ {id:'ipad',name:'iPad للدراسة',category:'تقنية',price:90000,saved:20000,note:'لتدوين المحاضرات وتنظيم أبحاثي',image:'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=85'},
+ {id:'books',name:'كتب ودورات',category:'دراسة',price:18000,saved:5000,note:'استثمار في علمي ومستقبلي',image:'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=900&q=85'},
+ {id:'shoes',name:'حذاء أنيق',category:'ملابس',price:18000,saved:6000,note:'حذاء يناسب إطلالاتي',image:'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85'},
+ {id:'skincare',name:'عناية بالبشرة',category:'جمال',price:15000,saved:5000,note:'روتين العناية الذي أريده',image:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85'},
+ {id:'home',name:'تجهيز غرفتي',category:'منزل',price:50000,saved:12000,note:'مساحة مريحة تشبهني',image:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85'},
+ {id:'jewelry',name:'مجوهرات ناعمة',category:'أخرى',price:30000,saved:7000,note:'قطعة صغيرة أحتفظ بها طويلًا',image:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85'},
+ {id:'bag',name:'حقيبة يومية',category:'ملابس',price:22000,saved:9000,note:'حقيبة عملية وأنيقة',image:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85'}
+];
+const fallbackImage='https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80';
+let goals=[];
+let activeFilter='الكل';
+
+function load(){
+ try{
+  const saved=localStorage.getItem(KEY);
+  goals=saved?JSON.parse(saved):defaultGoals.map(g=>({...g}));
+  if(!Array.isArray(goals)) goals=defaultGoals.map(g=>({...g}));
+ }catch(e){goals=defaultGoals.map(g=>({...g}));}
+ document.getElementById('monthlySaving').value=localStorage.getItem('velora_monthly')||'';
+ document.getElementById('myNote').value=localStorage.getItem('velora_note')||'';
+}
+function persist(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(goals));
+  localStorage.setItem('velora_monthly',document.getElementById('monthlySaving').value);
+ }catch(e){toast('تعذر الحفظ في المتصفح. تأكدي من إعداداته.');}
+}
+function money(n){return Math.round(n).toLocaleString('fr-FR')+' دج';}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function validImage(s){
+ try{const u=new URL(s);return ['https:','http:'].includes(u.protocol)?u.href:fallbackImage;}
+ catch(e){return fallbackImage;}
+}
+function safePct(g){return g.price>0?Math.min(100,Math.round(g.saved/g.price*100)):0;}
+function remaining(g){return Math.max(0,g.price-g.saved);}
 function render(){
- const arr=s.transactions.filter(included),inc=arr.filter(t=>t.type==='income'),out=arr.filter(t=>t.type==='expense');
- const a=inc.reduce((v,t)=>v+ +t.amount,0),b=out.reduce((v,t)=>v+ +t.amount,0),bal=a-b;
- $('income').innerHTML=money(a);$('expense').innerHTML=money(b);$('balance').innerHTML=money(bal);
- $('incomeCount').textContent=inc.length;$('expenseCount').textContent=out.length;
- $('avgIncome').textContent=compact(inc.length?a/inc.length:0);$('avgExpense').textContent=compact(out.length?b/out.length:0);
- $('balanceMessage').textContent=bal<0?'المصروفات أكبر من الدخل — راجعي خطتك بهدوء.':bal===0?'أضيفي عملياتك لتري الصورة كاملة.':'أنتِ تبنين توازنًا ماليًا خطوة بخطوة 💚';
- $('caption').textContent=s.period==='month'?'رتّبي أموالك، تابعي أهدافك، واصنعي مساحة لمستقبلك.':s.period==='year'?'نظرة على رحلتك المالية خلال السنة الحالية.':'كل عملياتك المسجلة في لوحة واحدة.';
- $('periodLabel').textContent=s.period==='month'?'هذا الشهر':s.period==='year'?'هذه السنة':'كل الفترات';
- chart(arr,b);renderBudget();renderGoals();renderTransactions();
+ const total=goals.reduce((s,g)=>s+g.price,0);
+ const saved=goals.reduce((s,g)=>s+Math.min(g.saved,g.price),0);
+ const left=goals.reduce((s,g)=>s+remaining(g),0);
+ document.getElementById('totalTargets').textContent=money(total);
+ document.getElementById('totalSaved').textContent=money(saved);
+ document.getElementById('totalRemaining').textContent=money(left);
+ document.getElementById('totalProgress').textContent=(total?Math.round(saved/total*100):0)+'%';
+ document.getElementById('planRemaining').textContent=money(left);
+ const monthly=Number(document.getElementById('monthlySaving').value)||0;
+ document.getElementById('planTime').textContent=left===0?'كل أهدافك مكتملة 🎉':monthly>0?Math.ceil(left/monthly)+' شهر تقريبًا':'أدخلي مبلغ الادخار';
+ const board=document.getElementById('board');
+ const shown=goals.filter(g=>activeFilter==='الكل'||g.category===activeFilter);
+ board.innerHTML=shown.map(g=>{
+  const pct=safePct(g),left=remaining(g);
+  return `<article class="goal">
+   <div class="goal-image">
+    <img src="${esc(validImage(g.image))}" alt="${esc(g.name)}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'">
+    <span class="goal-category">${esc(g.category)}</span>
+   </div>
+   <div class="goal-body">
+    <div class="goal-title-row"><div><h3 class="goal-title">${esc(g.name)}</h3><p class="goal-note">${esc(g.note||'حلم يستحق أن يتحقق ♡')}</p></div>
+    <button class="menu-btn" title="تعديل الهدف" onclick="editGoal('${esc(g.id)}')">✎</button></div>
+    <div class="money-line"><span>السعر الكامل</span><strong>${money(g.price)}</strong></div>
+    <div class="money-line" style="margin-top:7px"><span>جمعتُ</span><strong>${money(g.saved)}</strong></div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-foot"><b>${pct}% مكتمل</b><span>${left===0?'تحقق الحلم! 🎉':'باقي '+money(left)}</span></div>
+    <div class="goal-actions">
+     <button class="save-btn" onclick="addSavings('${esc(g.id)}')">＋ أضف مدخرات</button>
+     <button onclick="editGoal('${esc(g.id)}')">تعديل</button>
+     <button onclick="deleteGoal('${esc(g.id)}')">حذف</button>
+    </div>
+   </div>
+  </article>`;
+ }).join('');
+ board.insertAdjacentHTML('beforeend',`<button class="add-card" onclick="openModal()"><span>＋</span><strong>أضيفي حلمًا جديدًا</strong><small>كل حلم يبدأ بخطوة صغيرة ♡</small></button>`);
+ document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter));
 }
-function chart(arr,total){
- const cats={};arr.filter(t=>t.type==='expense').forEach(t=>cats[t.category]=(cats[t.category]||0)+ +t.amount);
- const entries=Object.entries(cats).sort((a,b)=>b[1]-a[1]),circ=2*Math.PI*44;let offset=0;
- $('donutTotal').textContent=compact(total);
- $('arcs').innerHTML=entries.map((e,i)=>{const len=total?e[1]/total*circ:0,html=`<circle cx="60" cy="60" r="44" fill="none" stroke="${colors[i%colors.length]}" stroke-width="13" stroke-dasharray="${len} ${circ-len}" stroke-dashoffset="${-offset}"/>`;offset+=len;return html}).join('');
- $('legend').innerHTML=entries.length?entries.slice(0,6).map((e,i)=>`<div class="legend-row"><span class="dot" style="background:${colors[i%colors.length]}"></span><span>${esc(e[0])}</span><b>${compact(e[1])}</b></div>`).join(''):'<div class="empty">أضيفي مصروفاتك أولًا.</div>';
+function openModal(g=null){
+ document.getElementById('goalForm').reset();
+ document.getElementById('editId').value=g?g.id:'';
+ document.getElementById('modalTitle').textContent=g?'✎ تعديل حلمي':'✨ أضيفي حلمًا جديدًا';
+ document.getElementById('goalName').value=g?g.name:'';
+ document.getElementById('goalCategory').value=g?g.category:'تقنية';
+ document.getElementById('goalPrice').value=g?g.price:'';
+ document.getElementById('goalSaved').value=g?g.saved:0;
+ document.getElementById('goalImage').value=g?g.image:'';
+ document.getElementById('goalNote').value=g?g.note:'';
+ document.getElementById('goalModal').classList.add('open');
 }
-function renderBudget(){
- const used=s.transactions.filter(t=>t.type==='expense'&&new Date(t.date+'T12:00:00').getFullYear()===now.getFullYear()&&new Date(t.date+'T12:00:00').getMonth()===now.getMonth()).reduce((v,t)=>v+ +t.amount,0),limit=+s.budget||0,p=limit?used/limit*100:0;
- $('budget').value=s.budget||'';$('budgetBar').style.width=Math.min(100,p)+'%';$('budgetBar').style.background=p>100?'#ce7d76':'linear-gradient(90deg,#64876b,#d7ae68)';
- $('budgetPct').textContent=limit?p.toFixed(0)+'% مستخدم':'لم تبدئي بعد';$('budgetLeft').textContent=money(limit-used);
- $('budgetMessage').textContent=!limit?'حددي ميزانيتك لمتابعة التقدم.':p>100?'تجاوزتِ الميزانية المحددة.':`باقي لكِ ${money(limit-used)} من ميزانيتك.`;
+function closeModal(){document.getElementById('goalModal').classList.remove('open');}
+function editGoal(id){const g=goals.find(x=>x.id===id);if(g)openModal(g);}
+document.getElementById('goalForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const id=document.getElementById('editId').value;
+ const price=Number(document.getElementById('goalPrice').value);
+ const saved=Number(document.getElementById('goalSaved').value);
+ if(!Number.isFinite(price)||price<=0||!Number.isFinite(saved)||saved<0){toast('تحققي من المبالغ المدخلة');return;}
+ const g={
+  id:id||('goal_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)),
+  name:document.getElementById('goalName').value.trim(),
+  category:document.getElementById('goalCategory').value,
+  price,saved,
+  image:validImage(document.getElementById('goalImage').value||fallbackImage),
+  note:document.getElementById('goalNote').value.trim()
+ };
+ if(!g.name){toast('اكتبي اسم الهدف أولًا');return;}
+ const idx=goals.findIndex(x=>x.id===id);
+ if(idx>=0)goals[idx]=g;else goals.unshift(g);
+ persist();render();closeModal();toast(idx>=0?'تم تحديث حلمك ♡':'تمت إضافة حلم جديد ♡');
+});
+function addSavings(id){
+ const g=goals.find(x=>x.id===id);if(!g)return;
+ const amount=prompt('كم أضفتِ إلى مدخرات "'+g.name+'" بالدينار؟','1000');
+ if(amount===null)return;
+ const n=Number(amount);
+ if(!Number.isFinite(n)||n<=0){toast('أدخلي مبلغًا صحيحًا أكبر من صفر');return;}
+ g.saved+=n;persist();render();
+ toast(g.saved>=g.price?'مبروك! وصلتِ إلى هدفك 🎉':'تمت إضافة مدخراتك بنجاح ♡');
 }
-function renderGoals(){
- $('goals').innerHTML=s.goals.length?s.goals.map(g=>{const p=Math.min(100,(+g.saved/(+g.target||1))*100);return `<div class="goal"><div class="goal-top"><b>✨ ${esc(g.name)}</b><button data-delgoal="${g.id}">حذف ×</button></div><div class="goal-meta"><span>المدخر: <b>${money(g.saved)}</b></span><span>الهدف: <b>${money(g.target)}</b></span></div><div class="progress"><span style="width:${p}%"></span></div><div class="goal-meta"><span>${p.toFixed(0)}% مكتمل</span><button class="smallbtn" data-add="${g.id}">＋ ادخار</button></div></div>`}).join(''):'<div class="empty">أول هدف يبدأ بحلم صغير 💗</div>';
+function deleteGoal(id){
+ const g=goals.find(x=>x.id===id);if(!g)return;
+ if(!confirm('هل تريدين حذف هدف "'+g.name+'"؟'))return;
+ goals=goals.filter(x=>x.id!==id);persist();render();toast('تم حذف الهدف');
 }
-function renderTransactions(){
- const q=$('search').value.toLowerCase().trim(),filter=$('filter').value;
- const arr=s.transactions.filter(included).filter(t=>(filter==='all'||t.type===filter)&&(`${t.title} ${t.category} ${t.date}`.toLowerCase().includes(q))).sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
- $('transactions').innerHTML=arr.length?arr.map(t=>`<div class="tx"><div class="tx-icon">${icons[t.category]||'✨'}</div><div><div class="tx-name">${esc(t.title)}</div><div class="tx-meta">${esc(t.category)} · ${esc(t.date)}</div></div><div class="amount ${t.type==='income'?'plus':'minus'}">${t.type==='income'?'+':'−'}${compact(t.amount)}</div><button class="delete" data-deltx="${t.id}" aria-label="حذف">×</button></div>`).join(''):'<div class="empty">ما لقينا حتى عملية مطابقة.</div>';
+function toast(msg){
+ const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
+ clearTimeout(window.veloraToastTimer);
+ window.veloraToastTimer=setTimeout(()=>el.classList.remove('show'),2600);
 }
-document.querySelectorAll('[data-period]').forEach(btn=>btn.onclick=()=>{s.period=btn.dataset.period;document.querySelectorAll('[data-period]').forEach(b=>b.classList.toggle('active',b===btn));save();render()});
-document.querySelectorAll('[data-kind]').forEach(btn=>btn.onclick=()=>{kind=btn.dataset.kind;document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b===btn))});
-$('txForm').onsubmit=e=>{e.preventDefault();const title=$('title').value.trim(),amount=+$('amount').value,date=$('date').value;if(!title||!Number.isFinite(amount)||amount<=0||!date)return notify('تأكدي من الاسم والمبلغ والتاريخ.');s.transactions.push({id:Date.now(),title,amount,date,type:kind,category:$('category').value});save();e.target.reset();$('date').value=dateStr(new Date());kind='income';document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind==='income'));render();notify('تمت إضافة العملية إلى لوحتك ✨')};
-$('budget').oninput=e=>{s.budget=Math.max(0,+e.target.value||0);save();renderBudget()};
-$('goalForm').onsubmit=e=>{e.preventDefault();const name=$('goalName').value.trim(),target=+$('target').value,saved=+$('saved').value||0;if(!name||target<=0||saved<0)return notify('أدخلي اسم الهدف ومبلغًا صحيحًا.');s.goals.push({id:Date.now(),name,target,saved});save();e.target.reset();$('saved').value=0;renderGoals();notify('هدف جديد، وخطوة أقرب لحلمك 🎯')};
-$('goals').onclick=e=>{const d=e.target.closest('[data-delgoal]'),a=e.target.closest('[data-add]');if(d){s.goals=s.goals.filter(g=>g.id!==+d.dataset.delgoal);save();renderGoals();notify('تم حذف الهدف')}if(a){const g=s.goals.find(x=>x.id===+a.dataset.add),v=prompt('كم تريدين إضافته إلى هدف '+g.name+'؟ (دج)');if(v===null)return;const n=+v;if(!Number.isFinite(n)||n<=0)return notify('أدخلي مبلغًا أكبر من صفر.');g.saved=+g.saved+n;save();renderGoals();notify('ادخار جديد، أحسنتِ 💛')}};
-$('transactions').onclick=e=>{const b=e.target.closest('[data-deltx]');if(b&&confirm('حذف هذه العملية؟')){s.transactions=s.transactions.filter(t=>t.id!==+b.dataset.deltx);save();render();notify('تم حذف العملية')}};
-$('search').oninput=renderTransactions;$('filter').onchange=renderTransactions;
-$('notes').value=s.notes||'';$('notes').oninput=e=>{s.notes=e.target.value;save()};
-$('jump').onclick=()=>{$('addCard').scrollIntoView({behavior:'smooth',block:'start'});$('title').focus({preventScroll:true})};
-$('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(s,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='velora-money-board.json';a.click();URL.revokeObjectURL(u);notify('جهزنا لكِ نسخة احتياطية 📦')};
-$('reset').onclick=()=>{if(confirm('سيتم حذف كل بيانات اللوحة المحفوظة على هذا المتصفح. هل أنتِ متأكدة؟')){s={transactions:[],goals:[],budget:0,notes:'',period:'month'};save();$('notes').value='';document.querySelectorAll('[data-period]').forEach(b=>b.classList.toggle('active',b.dataset.period==='month'));render();notify('تمت إعادة ضبط اللوحة')}};
-render();
-})();
+document.getElementById('filters').addEventListener('click',e=>{
+ const b=e.target.closest('[data-filter]');if(!b)return;
+ activeFilter=b.dataset.filter;render();
+});
+document.getElementById('monthlySaving').addEventListener('input',()=>{
+ persist();render();
+});
+function saveNote(){
+ try{localStorage.setItem('velora_note',document.getElementById('myNote').value);toast('حُفظت ملاحظتك 🤍');}
+ catch(e){toast('تعذر حفظ الملاحظة');}
+}
+function exportData(){
+ const data={app:'Velora',exportedAt:new Date().toISOString(),goals,monthlySaving:document.getElementById('monthlySaving').value,note:document.getElementById('myNote').value};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='velora-dreams.json';a.click();URL.revokeObjectURL(url);
+ toast('تم تجهيز نسخة من بياناتك');
+}
+document.getElementById('goalModal').addEventListener('click',e=>{
+ if(e.target.id==='goalModal')closeModal();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+load();render();
 </script>
 </body>
 </html>
