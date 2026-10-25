@@ -3,432 +3,427 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velora | لوحة أحلامي</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velora — My Money & Dreams</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
-
-:root{
- --cream:#fffaf5;--pink:#f6e4e2;--rose:#c98283;
- --green:#829b83;--gold:#c8a65e;--ink:#493c3a;
- --muted:#93827e;--white:#fffdfb;--line:#eadbd4;
-}
+:root{--bg:#fbf4ef;--card:#fffdf9;--ink:#493b39;--muted:#998681;--pink:#f2dcd9;--rose:#c57e81;--green:#819b81;--gold:#c7a35e;--line:#eadbd4;--red:#bd6c6c}
 *{box-sizing:border-box}
-body{
- margin:0;color:var(--ink);font-family:'Cairo',sans-serif;
- background:
- radial-gradient(ellipse at 5% 8%,#f6dfd9 0,transparent 28%),
- radial-gradient(ellipse at 95% 45%,#e7e9db 0,transparent 28%),
- linear-gradient(135deg,#fffaf5,#f8eee8 55%,#fff8f1);
- min-height:100vh;
-}
-button,input,select{font:inherit}
+body{margin:0;background:radial-gradient(ellipse at 0 0,#f3deda 0,transparent 32%),radial-gradient(ellipse at 100% 40%,#e5eadd 0,transparent 28%),var(--bg);color:var(--ink);font-family:'Cairo',sans-serif}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-.topbar{
- position:sticky;top:0;z-index:5;background:#fffaf5eF;
- backdrop-filter:blur(16px);border-bottom:1px solid var(--line);
- padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;
-}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-heart{font-size:32px;color:var(--gold)}
-.brand h1{font-family:'Playfair Display',serif;font-size:29px;margin:0;letter-spacing:1px}
-.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1px}
-.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.btn{
- border:0;border-radius:30px;padding:10px 17px;
- background:var(--rose);color:white;box-shadow:0 5px 14px #c9828325;
-}
-.btn.secondary{background:white;color:var(--ink);border:1px solid var(--line)}
-.btn.green{background:var(--green)}
-.hero{
- margin:24px auto 20px;width:90%;max-width:1450px;min-height:230px;
- border-radius:28px;overflow:hidden;position:relative;
- background:linear-gradient(90deg,#fff8f0dd,#f7e6dfaa),
- url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1800&q=85') center 52%/cover;
- display:flex;align-items:center;padding:35px 5%;
- box-shadow:0 10px 35px #8a66500c;
-}
-.hero-content{max-width:580px}
-.eyebrow{color:#9c7773;letter-spacing:2px;font-size:12px}
-.hero h2{font-size:clamp(28px,4vw,45px);line-height:1.45;margin:10px 0}
-.hero p{color:#7d6965;line-height:2;margin:0 0 17px}
-.hero .quote{font-family:'Playfair Display',serif;color:#9b7271;font-style:italic}
-.wrap{width:90%;max-width:1450px;margin:auto}
-.summary{
- display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 28px;
-}
-.stat,.panel{
- background:#fffdf9e8;border:1px solid #ebddd5;
- border-radius:20px;padding:19px;box-shadow:0 7px 24px #65483a08;
-}
-.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
-.stat-icon{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:var(--pink);font-size:20px}
-.stat-value{font-size:clamp(19px,2vw,28px);font-weight:800;margin-top:12px;overflow-wrap:anywhere}
-.stat-foot{font-size:12px;color:var(--muted);margin-top:3px}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:28px 0 15px}
-.section-head h2{margin:0;font-size:24px}
-.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
-.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
-.chip{background:#fffaf6;border:1px solid var(--line);color:var(--ink);border-radius:30px;padding:7px 14px;font-size:12px}
-.chip.active{background:var(--green);color:white;border-color:var(--green)}
-.board{columns:4 245px;column-gap:18px}
-.goal{
- display:inline-block;width:100%;break-inside:avoid;margin:0 0 18px;
- background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;
- box-shadow:0 8px 22px #65483a0a;transition:transform .2s,box-shadow .2s;
-}
-.goal:hover{transform:translateY(-3px);box-shadow:0 12px 28px #65483a12}
-.goal-image{height:180px;position:relative;background:var(--pink);overflow:hidden}
-.goal-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
-.goal:hover .goal-image img{transform:scale(1.04)}
-.goal-image:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#382a2518);pointer-events:none}
-.goal-category{position:absolute;top:12px;right:12px;z-index:1;background:#fffaf0eF;border-radius:30px;padding:5px 10px;font-size:11px}
-.goal-body{padding:16px}
-.goal-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.goal-title{font-size:17px;font-weight:800;margin:0 0 5px}
-.goal-note{font-size:12px;color:var(--muted);margin:0 0 14px;overflow-wrap:anywhere}
-.menu-btn{border:0;background:#f7eeea;border-radius:50%;width:31px;height:31px;color:var(--ink);flex-shrink:0}
-.money-line{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
-.money-line strong{color:var(--ink);font-size:14px}
-.progress-track{height:9px;background:#eee9e5;border-radius:20px;margin:10px 0;overflow:hidden}
-.progress-fill{height:100%;background:linear-gradient(90deg,#809b80,#b4c5a4);border-radius:20px;transition:width .3s}
-.progress-foot{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-top:5px}
-.progress-foot b{color:#6c8a70}
-.goal-actions{display:flex;gap:7px;margin-top:15px}
-.goal-actions button{flex:1;font-size:12px;padding:8px 5px;border:1px solid var(--line);border-radius:11px;background:#fffaf7;color:var(--ink)}
-.goal-actions .save-btn{background:#eaf0e6;border-color:#eaf0e6}
-.add-card{
- display:flex;width:100%;min-height:250px;break-inside:avoid;margin-bottom:18px;
- flex-direction:column;align-items:center;justify-content:center;text-align:center;
- background:#f8e9e4a6;border:1.5px dashed #d8aaa5;border-radius:20px;color:#9b6968;padding:20px;
-}
-.add-card span{font-size:43px;line-height:1}
-.add-card strong{margin:12px 0 3px}
-.add-card small{color:var(--muted)}
-.bottom-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:17px;margin:30px 0}
-.panel h3{margin:0 0 15px}
-.budget-row{margin:13px 0}
-.budget-label{display:flex;justify-content:space-between;gap:10px;font-size:13px}
-.budget-label span:last-child{color:var(--muted)}
-input,select{
- width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;
- background:#fffdfb;color:var(--ink);outline:none;
-}
-input:focus,select:focus{border-color:var(--rose);box-shadow:0 0 0 3px #c9828318}
+.top{position:sticky;top:0;z-index:5;background:#fffaf4ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line);padding:13px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;gap:10px;align-items:center}.heart{font-size:31px;color:var(--gold)}.brand h1{font:700 29px 'Playfair Display',serif;margin:0}.brand small{font-size:10px;color:var(--muted);letter-spacing:1px}
+.btn{border:0;border-radius:13px;background:var(--rose);color:white;padding:10px 15px;box-shadow:0 5px 15px #c57e8117}
+.btn.green{background:var(--green)}.btn.light{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn.danger{background:#f7e6e3;color:#a45454;box-shadow:none}
+.nav{display:flex;gap:7px;flex-wrap:wrap;padding:15px 5% 0}
+.nav button{border:1px solid var(--line);background:#fffaf6;color:var(--ink);border-radius:30px;padding:8px 15px;font-size:13px}
+.nav button.active{background:var(--green);color:white;border-color:var(--green)}
+.wrap{width:90%;max-width:1400px;margin:auto}
+.hero{margin:22px auto 18px;border-radius:26px;overflow:hidden;padding:30px 5%;min-height:195px;background:linear-gradient(90deg,#fff7efef,#f5e3dce0),url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1500&q=80') center/cover;display:flex;align-items:center}
+.hero h2{font-size:clamp(27px,4vw,42px);margin:7px 0;line-height:1.5}.hero p{color:#806e68;line-height:1.9;margin:0}.eyebrow{font-size:11px;letter-spacing:2px;color:#a27772}
+.page{display:none}.page.active{display:block}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:24px 0 15px}
+.section-head h2{font-size:23px;margin:0}.section-head p{font-size:12px;color:var(--muted);margin:3px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:17px 0}
+.stat,.panel{background:#fffdf9e8;border:1px solid var(--line);border-radius:19px;padding:17px;box-shadow:0 8px 25px #684a3d08}
+.stat-label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:6px}.stat-icon{width:37px;height:37px;border-radius:13px;background:var(--pink);display:grid;place-items:center;font-size:19px}
+.stat-value{font-size:clamp(17px,2vw,25px);font-weight:800;margin-top:10px;overflow-wrap:anywhere}.stat-note{font-size:11px;color:var(--muted);margin-top:3px}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:12px;margin-bottom:5px;color:#776562}
-.full{grid-column:1/-1}
-.modal{
- display:none;position:fixed;inset:0;z-index:20;background:#33221f80;
- align-items:center;justify-content:center;padding:18px;overflow-y:auto;
-}
-.modal.open{display:flex}
-.modal-box{
- width:100%;max-width:570px;max-height:92vh;overflow-y:auto;
- background:var(--cream);border-radius:24px;padding:24px;
- box-shadow:0 20px 80px #30201f30;
-}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.modal-head h3{margin:0}
-.close{border:0;background:#f1e4df;border-radius:50%;width:35px;height:35px;font-size:18px}
-.form-buttons{display:flex;gap:10px;margin-top:15px}
-.form-buttons button{flex:1}
-.empty{text-align:center;padding:35px;color:var(--muted)}
-footer{text-align:center;padding:30px 15px 38px;color:#9a7b74;font-size:12px}
-.toast{
- position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);
- background:#4e6650;color:white;padding:12px 20px;border-radius:30px;
- opacity:0;pointer-events:none;transition:.25s;z-index:50;
-}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:900px){.summary{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom-grid{grid-template-columns:1fr}}
-@media(max-width:550px){
- .topbar{padding:12px 5%}.brand h1{font-size:24px}.top-actions .secondary{display:none}
- .hero{width:92%;padding:24px;min-height:210px}
- .wrap{width:92%}.board{columns:2 145px;column-gap:10px}
- .goal{margin-bottom:10px;border-radius:15px}.goal-image{height:135px}
- .goal-body{padding:11px}.goal-title{font-size:14px}.goal-note{font-size:11px}
- .money-line{font-size:10px}.money-line strong{font-size:12px}
- .goal-actions{flex-direction:column}.goal-actions button{width:100%}
- .summary{gap:9px}.stat{padding:13px}.stat-value{font-size:19px}
- .form-grid{grid-template-columns:1fr}.full{grid-column:auto}
-}
+.field{margin-bottom:12px}.field label{display:block;font-size:12px;color:#796762;margin-bottom:5px}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fffdfb;color:var(--ink);padding:11px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px #c57e8118}
+.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.help{font-size:11px;color:var(--muted);line-height:1.8}
+.table-wrap{overflow-x:auto}.table{width:100%;border-collapse:collapse;font-size:12px;min-width:520px}
+.table th,.table td{text-align:right;padding:12px 8px;border-bottom:1px solid #f0e6e0;vertical-align:middle}
+.table th{color:var(--muted);font-weight:600}.income{color:#59845e;font-weight:700}.expense{color:#b8656b;font-weight:700}
+.small-btn{border:1px solid var(--line);background:#fff8f4;border-radius:9px;padding:5px 8px;color:var(--ink);font-size:11px;margin:2px}
+.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.cat-card{border:1px solid var(--line);background:#fffdf9;border-radius:15px;padding:14px}
+.cat-card .emoji{font-size:23px}.cat-card h4{margin:6px 0;font-size:14px}.cat-card p{font-size:12px;color:var(--muted);margin:0}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:17px}.chip{border:1px solid var(--line);background:#fffdf9;color:var(--ink);padding:7px 12px;border-radius:30px;font-size:12px}.chip.active{background:var(--green);color:white}
+.board{columns:4 230px;column-gap:15px}.goal{display:inline-block;width:100%;break-inside:avoid;margin-bottom:15px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card);box-shadow:0 8px 20px #684a3d08}
+.goal-img{height:175px;background:var(--pink);position:relative}.goal-img img{width:100%;height:100%;object-fit:cover;display:block}.tag{position:absolute;top:10px;right:10px;background:#fffaf0ee;padding:5px 9px;border-radius:20px;font-size:11px}
+.goal-body{padding:14px}.goal-body h3{font-size:16px;margin:0 0 4px}.goal-note{font-size:11px;color:var(--muted);margin:0 0 12px}
+.line{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-top:7px}.line span{color:var(--muted)}.line strong{overflow-wrap:anywhere;text-align:left}
+.track{height:8px;background:#eee8e3;border-radius:20px;overflow:hidden;margin:10px 0}.fill{height:100%;background:linear-gradient(90deg,#7c987d,#b5c8a8);border-radius:20px}
+.goal-buttons{display:flex;gap:5px;flex-wrap:wrap;margin-top:13px}.goal-buttons button{flex:1;min-width:65px;border:1px solid var(--line);border-radius:9px;padding:7px 4px;background:#fff8f4;color:var(--ink);font-size:11px}
+.goal-buttons .contribute{background:#eaf0e6;border-color:#eaf0e6}
+.progress-label{display:flex;justify-content:space-between;font-size:11px;gap:6px}.progress-label b{color:var(--green)}
+.empty{text-align:center;color:var(--muted);padding:25px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);background:#4d684f;color:white;padding:12px 20px;border-radius:30px;opacity:0;pointer-events:none;transition:.2s;z-index:30;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{display:none;position:fixed;inset:0;z-index:20;background:#35221f80;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.modal-box{background:var(--bg);border-radius:22px;width:100%;max-width:570px;max-height:92vh;overflow-y:auto;padding:23px}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.modal-head h3{margin:0}.close{border:0;border-radius:50%;background:#f0e0db;width:34px;height:34px;font-size:19px}
+@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.top{padding:12px 4%}.brand h1{font-size:24px}.top .btn{padding:8px 10px;font-size:11px}.wrap{width:92%}.hero{padding:23px;min-height:180px}.stats{gap:8px}.stat{padding:12px}.stat-value{font-size:18px}.board{columns:2 140px;column-gap:9px}.goal-img{height:130px}.goal-body{padding:10px}.goal-body h3{font-size:13px}.goal-buttons{flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.category-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-
-<header class="topbar">
- <div class="brand">
-  <span class="brand-heart">♥</span>
-  <div><h1>Velora</h1><small>Your Dreams, Your Budget</small></div>
- </div>
- <div class="top-actions">
-  <button class="btn secondary" onclick="exportData()">↓ تصدير بياناتي</button>
-  <button class="btn" onclick="openModal()">＋ هدف جديد</button>
- </div>
+<header class="top">
+ <div class="brand"><span class="heart">♥</span><div><h1>Velora</h1><small>YOUR MONEY, YOUR DREAMS</small></div></div>
+ <button class="btn light" onclick="exportData()">↓ نسخة احتياطية</button>
 </header>
 
+<nav class="nav" id="nav">
+ <button class="active" data-page="home">الرئيسية</button>
+ <button data-page="money">الرصيد والراتب</button>
+ <button data-page="transactions">المصاريف والدخل</button>
+ <button data-page="goals">أهدافي وصوري</button>
+ <button data-page="settings">الإعدادات</button>
+</nav>
+
+<div class="wrap">
 <section class="hero">
- <div class="hero-content">
-  <div class="eyebrow">A LITTLE SAVING, A LOT OF DREAMING ✧</div>
-  <h2>أحلامك تستحق<br>كل خطوة صغيرة 🤍</h2>
-  <p>هذه مساحتك الخاصة لتخططي، تجمعي، وتشاهدي أحلامك تقترب يومًا بعد يوم.</p>
-  <div class="quote">Small steps, big dreams.</div>
+ <div><div class="eyebrow">A LITTLE SAVING, A LOT OF DREAMING ♡</div>
+ <h2>أموالكِ بترتيب،<br>وأحلامكِ أقرب 🌷</h2>
+ <p>تابعي راتبك، نظّمي مصاريفك، وادّخري للأشياء التي تحبينها.</p></div>
+</section>
+
+<section class="page active" id="page-home">
+ <div class="stats">
+  <div class="stat"><div class="stat-label">الرصيد الحالي <span class="stat-icon">👛</span></div><div class="stat-value" id="sBalance">0 دج</div><div class="stat-note">رصيدك بعد العمليات المسجلة</div></div>
+  <div class="stat"><div class="stat-label">الدخل المسجل <span class="stat-icon" style="background:#e6eee2">💵</span></div><div class="stat-value" id="sIncome">0 دج</div><div class="stat-note">إجمالي الدخل المسجل</div></div>
+  <div class="stat"><div class="stat-label">المصاريف المسجلة <span class="stat-icon" style="background:#f5e3df">🧾</span></div><div class="stat-value" id="sExpense">0 دج</div><div class="stat-note">بما فيها الأموال المخصصة للأهداف</div></div>
+  <div class="stat"><div class="stat-label">باقي أهدافي <span class="stat-icon" style="background:#f5edcf">✨</span></div><div class="stat-value" id="sGoals">0 دج</div><div class="stat-note">المبلغ الذي ما زلتِ تحتاجينه</div></div>
+ </div>
+ <div class="layout">
+  <div class="panel"><h3>🌷 ملخص هذا الشهر</h3>
+   <div class="line"><span>الدخل هذا الشهر</span><strong class="income" id="monthIncome">0 دج</strong></div>
+   <div class="line"><span>المصاريف هذا الشهر</span><strong class="expense" id="monthExpense">0 دج</strong></div>
+   <div class="line"><span>المتبقي من دخل الشهر</span><strong id="monthLeft">0 دج</strong></div>
+   <div class="track"><div class="fill" id="expenseBar" style="width:0%"></div></div>
+   <p class="help">يعتمد الملخص على العمليات التي تسجلينها بتاريخ هذا الشهر.</p>
+  </div>
+  <div class="panel"><h3>💌 تذكير لنفسي</h3>
+   <p style="line-height:2;color:#806d68">ليس عليكِ شراء كل شيء الآن. خطوة صغيرة كل شهر قد تصنع فرقًا كبيرًا. أنتِ تستحقين أن تخططي لأحلامك بهدوء. ♡</p>
+   <button class="btn green" onclick="showPage('goals')">شوفي أحلامي ←</button>
+  </div>
+ </div>
+ <div class="section-head"><div><h2>آخر العمليات</h2><p>كل دخل ومصروف تسجلينه يظهر هنا.</p></div><button class="btn" onclick="showPage('transactions')">＋ عملية جديدة</button></div>
+ <div class="panel table-wrap" id="homeRecent"></div>
+</section>
+
+<section class="page" id="page-money">
+ <div class="section-head"><div><h2>الرصيد والراتب 💰</h2><p>افصلي بين المبلغ الموجود معك والراتب الذي تنتظرينه.</p></div></div>
+ <div class="layout">
+  <div class="panel">
+   <h3>👛 الرصيد الافتتاحي</h3>
+   <div class="field"><label>كم تملكين الآن قبل العمليات الجديدة؟ (دج)</label><input id="openingBalance" type="number" min="0" step="1" placeholder="مثال: 5000"></div>
+   <button class="btn green" onclick="saveOpening()">حفظ الرصيد الافتتاحي</button>
+   <p class="help">هذا هو رصيد البداية فقط. لا تضعي فيه الراتب المتوقع؛ سجلي الراتب عند استلامه حتى لا يتكرر احتسابه.</p>
+  </div>
+  <div class="panel">
+   <h3>💵 راتبي الشهري</h3>
+   <div class="field"><label>الراتب المتوقع (دج)</label><input id="salary" type="number" min="0" step="1" placeholder="مثال: 40000"></div>
+   <button class="btn" onclick="saveSalary()">حفظ الراتب المتوقع</button>
+   <button class="btn green" onclick="addSalary()">＋ استلمت راتبي هذا الشهر</button>
+   <p class="help">حفظ الراتب المتوقع لا يغيّر رصيدك. زر استلام الراتب يضيفه مرة واحدة فقط لكل شهر من خلال هذه الصفحة.</p>
+   <div class="line"><span>الراتب المتوقع</span><strong id="salaryPreview">0 دج</strong></div>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:16px"><h3>🧮 كيف يُحسب الرصيد؟</h3>
+  <p style="line-height:2;color:var(--muted)">الرصيد الافتتاحي + كل المداخيل المسجلة − كل المصاريف المسجلة = الرصيد الحالي.</p>
+  <p class="help">تسجيل مصروف تنقل أو أكل يخصم المبلغ من الرصيد. وإضافة مدخرات لهدف تسجّل تحويلًا إلى الادخار وتحدّث الهدف في الوقت نفسه.</p>
  </div>
 </section>
 
-<main class="wrap">
- <section class="summary">
-  <div class="stat">
-   <div class="stat-top"><span>إجمالي أهدافي</span><span class="stat-icon">♡</span></div>
-   <div class="stat-value" id="totalTargets">0 دج</div><div class="stat-foot">قيمة كل أحلامك معًا</div>
-  </div>
-  <div class="stat">
-   <div class="stat-top"><span>ما جمعته حتى الآن</span><span class="stat-icon" style="background:#e7efe4">🌱</span></div>
-   <div class="stat-value" id="totalSaved">0 دج</div><div class="stat-foot">كل مبلغ يقرّبك من حلمك</div>
-  </div>
-  <div class="stat">
-   <div class="stat-top"><span>المبلغ المتبقي</span><span class="stat-icon" style="background:#f7edce">✨</span></div>
-   <div class="stat-value" id="totalRemaining">0 دج</div><div class="stat-foot">الطريق الباقي لتحقيق أهدافك</div>
-  </div>
-  <div class="stat">
-   <div class="stat-top"><span>التقدم الإجمالي</span><span class="stat-icon" style="background:#e9e4f5">🌸</span></div>
-   <div class="stat-value" id="totalProgress">0%</div><div class="stat-foot">أنتِ قادرة على الوصول!</div>
-  </div>
- </section>
-
- <div class="section-head">
-  <div><h2>لوحة أحلامي <span style="color:#c98283">♡</span></h2>
-  <p>كل ما تتمنينه، في مكان واحد وبأسلوبك الخاص.</p></div>
-  <button class="btn" onclick="openModal()">＋ أضيفي حلمًا</button>
- </div>
-
- <div class="filters" id="filters">
-  <button class="chip active" data-filter="الكل">كل الأحلام</button>
-  <button class="chip" data-filter="تقنية">تقنية</button>
-  <button class="chip" data-filter="سفر">سفر</button>
-  <button class="chip" data-filter="جمال">جمال</button>
-  <button class="chip" data-filter="ملابس">ملابس</button>
-  <button class="chip" data-filter="منزل">منزل</button>
-  <button class="chip" data-filter="دراسة">دراسة</button>
-  <button class="chip" data-filter="أخرى">أخرى</button>
- </div>
-
- <section class="board" id="board"></section>
-
- <section class="bottom-grid">
+<section class="page" id="page-transactions">
+ <div class="section-head"><div><h2>الدخل والمصاريف 🧾</h2><p>سجّلي كل ما يدخل إلى أموالك أو يخرج منها.</p></div></div>
+ <div class="layout">
   <div class="panel">
-   <h3>🌷 خطتي للادخار</h3>
-   <p style="color:var(--muted);font-size:13px;line-height:1.9">حددي المبلغ الذي تريدين ادخاره كل شهر، وسنحسب لك المدة التقريبية للوصول إلى أحلامك.</p>
-   <div class="field"><label for="monthlySaving">كم أستطيع ادخار شهريًا؟ (دج)</label>
-    <input type="number" id="monthlySaving" min="0" step="100" placeholder="مثال: 10000"></div>
-   <div class="budget-row"><div class="budget-label"><span>المتبقي لجميع أهدافك</span><strong id="planRemaining">0 دج</strong></div></div>
-   <div class="budget-row"><div class="budget-label"><span>المدة التقديرية</span><strong id="planTime">—</strong></div></div>
-   <p style="font-size:11px;color:var(--muted)">تقدير تقريبي بافتراض تخصيص المبلغ الشهري لهذه الأهداف.</p>
-  </div>
-  <div class="panel">
-   <h3>💌 رسالة لنفسي</h3>
-   <p style="line-height:2;color:#806d68">لا يلزم أن تحققي كل شيء اليوم. يكفي أن تبدئي، وأن تستمري بخطوات صغيرة. أحلامك ليست بعيدة كما تبدو. ♡</p>
-   <div class="field"><label for="myNote">ملاحظتي الخاصة</label>
-    <input id="myNote" placeholder="اكتبي أمنية أو تذكيرًا لنفسك..."></div>
-   <button class="btn green" onclick="saveNote()">حفظ ملاحظتي ♡</button>
-  </div>
- </section>
-</main>
-
-<footer>Made with ♡ for your dreams · Velora</footer>
-<div class="toast" id="toast"></div>
-
-<div class="modal" id="goalModal">
- <div class="modal-box">
-  <div class="modal-head"><h3 id="modalTitle">✨ أضيفي حلمًا جديدًا</h3>
-   <button class="close" onclick="closeModal()">×</button></div>
-  <form id="goalForm">
-   <input type="hidden" id="editId">
-   <div class="form-grid">
-    <div class="field"><label for="goalName">اسم الهدف *</label>
-     <input id="goalName" required maxlength="70" placeholder="مثال: حاسوبي الجديد"></div>
-    <div class="field"><label for="goalCategory">التصنيف</label>
-     <select id="goalCategory">
-      <option value="تقنية">💻 تقنية</option><option value="سفر">✈️ سفر</option>
-      <option value="جمال">💄 جمال وعناية</option><option value="ملابس">👗 ملابس</option>
-      <option value="منزل">🏡 منزل</option><option value="دراسة">📚 دراسة وكتب</option>
-      <option value="أخرى">🌸 أخرى</option>
+   <h3>＋ إضافة عملية</h3>
+   <form id="txForm">
+    <div class="form-grid">
+     <div class="field"><label>نوع العملية</label><select id="txType"><option value="expense">مصروف</option><option value="income">دخل</option></select></div>
+     <div class="field"><label>المبلغ (دج) *</label><input id="txAmount" type="number" min="1" step="1" required placeholder="مثال: 500"></div>
+     <div class="field"><label>الفئة</label><select id="txCategory">
+      <option>تنقل</option><option>أكل ومشروبات</option><option>قهوة</option><option>تسوق</option><option>ملابس</option><option>مكياج وعناية</option><option>دراسة وكتب</option><option>هاتف وإنترنت</option><option>سكن وفواتير</option><option>صحة</option><option>ادخار الأهداف</option><option>راتب</option><option>عمل إضافي</option><option>هدية</option><option>أخرى</option>
      </select></div>
-    <div class="field"><label for="goalPrice">السعر الكامل (دج) *</label>
-     <input id="goalPrice" type="number" min="1" step="1" required placeholder="مثال: 85000"></div>
-    <div class="field"><label for="goalSaved">المبلغ الذي جمعته (دج)</label>
-     <input id="goalSaved" type="number" min="0" step="1" value="0" required placeholder="مثال: 15000"></div>
-    <div class="field full"><label for="goalImage">رابط صورة الهدف (اختياري)</label>
-     <input id="goalImage" type="url" placeholder="https://..."></div>
-    <div class="field full"><label for="goalNote">ملاحظات (اختياري)</label>
-     <input id="goalNote" maxlength="160" placeholder="اللون، الموديل، المتجر..."></div>
-   </div>
-   <p style="font-size:12px;color:var(--muted)">💗 يمكنكِ تعديل السعر والمدخرات في أي وقت. ستُحسب قيمة المتبقي تلقائيًا.</p>
-   <div class="form-buttons">
-    <button class="btn" type="submit">حفظ الهدف ♡</button>
-    <button class="btn secondary" type="button" onclick="closeModal()">إلغاء</button>
-   </div>
-  </form>
+     <div class="field"><label>التاريخ</label><input id="txDate" type="date" required></div>
+     <div class="field full"><label>الوصف</label><input id="txDescription" maxlength="100" placeholder="مثال: تاكسي إلى الجامعة"></div>
+    </div>
+    <button class="btn" type="submit">حفظ العملية ♡</button>
+   </form>
+  </div>
+  <div class="panel">
+   <h3>📊 مصاريفي حسب الفئة</h3>
+   <p class="help">مجموع المصاريف لكل فئة في الشهر الحالي.</p>
+   <div id="categorySummary"></div>
+  </div>
  </div>
+ <div class="section-head"><div><h2>سجل العمليات</h2><p>يمكنك تعديل العملية أو حذفها عند الحاجة.</p></div>
+ <select id="txFilter" style="width:auto"><option value="all">كل العمليات</option><option value="income">الدخل فقط</option><option value="expense">المصاريف فقط</option></select></div>
+ <div class="panel table-wrap" id="txTable"></div>
+</section>
+
+<section class="page" id="page-goals">
+ <div class="section-head"><div><h2>لوحة أحلامي ♡</h2><p>أضيفي السعر والمدخرات والصور، وسنحسب الباقي.</p></div><button class="btn" onclick="openGoal()">＋ هدف جديد</button></div>
+ <div class="stats">
+  <div class="stat"><div class="stat-label">قيمة كل الأهداف</div><div class="stat-value" id="gTotal">0 دج</div></div>
+  <div class="stat"><div class="stat-label">مدخراتي للأهداف</div><div class="stat-value" id="gSaved">0 دج</div></div>
+  <div class="stat"><div class="stat-label">المبلغ المتبقي</div><div class="stat-value" id="gLeft">0 دج</div></div>
+  <div class="stat"><div class="stat-label">التقدم الإجمالي</div><div class="stat-value" id="gPct">0%</div></div>
+ </div>
+ <div class="filters" id="goalFilters">
+  <button class="chip active" data-filter="الكل">كل الأحلام</button><button class="chip" data-filter="تقنية">💻 تقنية</button><button class="chip" data-filter="سفر">✈️ سفر</button><button class="chip" data-filter="جمال">💄 جمال</button><button class="chip" data-filter="ملابس">👗 ملابس</button><button class="chip" data-filter="دراسة">📚 دراسة</button><button class="chip" data-filter="منزل">🏡 منزل</button><button class="chip" data-filter="أخرى">🌸 أخرى</button>
+ </div>
+ <div class="board" id="goalBoard"></div>
+</section>
+
+<section class="page" id="page-settings">
+ <div class="section-head"><div><h2>الإعدادات والبيانات ⚙️</h2><p>احتفظي بنسخة من بياناتك.</p></div></div>
+ <div class="layout">
+  <div class="panel"><h3>📥 تصدير نسخة احتياطية</h3><p class="help">نزّلي ملفًا يحتوي على الأهداف والعمليات والإعدادات لتحتفظي به.</p><button class="btn green" onclick="exportData()">تنزيل بياناتي JSON</button></div>
+  <div class="panel"><h3>📤 استيراد نسخة احتياطية</h3><p class="help">اختاري ملف JSON سبق أن صدّرتِه من Velora لاستعادة بياناتك.</p><input type="file" id="importFile" accept=".json,application/json"><button class="btn" style="margin-top:10px" onclick="importData()">استعادة البيانات</button></div>
+  <div class="panel full"><h3>🧹 إعادة ضبط البيانات</h3><p class="help">هذا الخيار يحذف العمليات والأهداف والإعدادات المحفوظة في هذا المتصفح. صدّري نسخة احتياطية أولًا إن كنتِ تحتاجين بياناتك.</p><button class="btn danger" onclick="resetAll()">مسح كل البيانات</button></div>
+ </div>
+</section>
 </div>
 
-<script>
-const KEY='velora_dream_board_v1';
-const defaultGoals=[
- {id:'laptop',name:'حاسوب محمول',category:'تقنية',price:120000,saved:15000,note:'للدراسة والعمل ومشاريعي المستقبلية',image:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85'},
- {id:'passport',name:'رحلة أحلامي',category:'سفر',price:200000,saved:30000,note:'مغامرة جديدة وذكريات جميلة',image:'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=85'},
- {id:'makeup',name:'مجموعة مكياج',category:'جمال',price:25000,saved:8000,note:'ألواني المفضلة ومنتجاتي الجميلة',image:'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=85'},
- {id:'clothes',name:'ملابس أنيقة',category:'ملابس',price:35000,saved:10000,note:'قطع راقية لخزانة أحلامي',image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85'},
- {id:'pajamas',name:'بيجامات ناعمة',category:'ملابس',price:12000,saved:4000,note:'راحة وأناقة في البيت',image:'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85'},
- {id:'ipad',name:'iPad للدراسة',category:'تقنية',price:90000,saved:20000,note:'لتدوين المحاضرات وتنظيم أبحاثي',image:'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=85'},
- {id:'books',name:'كتب ودورات',category:'دراسة',price:18000,saved:5000,note:'استثمار في علمي ومستقبلي',image:'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=900&q=85'},
- {id:'shoes',name:'حذاء أنيق',category:'ملابس',price:18000,saved:6000,note:'حذاء يناسب إطلالاتي',image:'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85'},
- {id:'skincare',name:'عناية بالبشرة',category:'جمال',price:15000,saved:5000,note:'روتين العناية الذي أريده',image:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85'},
- {id:'home',name:'تجهيز غرفتي',category:'منزل',price:50000,saved:12000,note:'مساحة مريحة تشبهني',image:'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85'},
- {id:'jewelry',name:'مجوهرات ناعمة',category:'أخرى',price:30000,saved:7000,note:'قطعة صغيرة أحتفظ بها طويلًا',image:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85'},
- {id:'bag',name:'حقيبة يومية',category:'ملابس',price:22000,saved:9000,note:'حقيبة عملية وأنيقة',image:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85'}
-];
-const fallbackImage='https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80';
-let goals=[];
-let activeFilter='الكل';
+<footer>Velora ♡ Small steps, big dreams.</footer>
+<div class="toast" id="toast"></div>
 
+<div class="modal" id="goalModal"><div class="modal-box">
+ <div class="modal-head"><h3 id="goalModalTitle">✨ إضافة هدف</h3><button class="close" onclick="closeGoal()">×</button></div>
+ <form id="goalForm">
+  <input id="goalId" type="hidden">
+  <div class="form-grid">
+   <div class="field"><label>اسم الهدف *</label><input id="goalName" required maxlength="70" placeholder="حاسوب محمول"></div>
+   <div class="field"><label>التصنيف</label><select id="goalCat"><option>تقنية</option><option>سفر</option><option>جمال</option><option>ملابس</option><option>دراسة</option><option>منزل</option><option>أخرى</option></select></div>
+   <div class="field"><label>السعر الكامل (دج) *</label><input id="goalPrice" type="number" min="1" required></div>
+   <div class="field"><label>المبلغ الذي جمعته (دج)</label><input id="goalSaved" type="number" min="0" value="0" required></div>
+   <div class="field full"><label>رابط صورة الهدف (اختياري)</label><input id="goalImage" type="url" placeholder="https://..."></div>
+   <div class="field full"><label>ملاحظات</label><input id="goalNote" maxlength="150" placeholder="الموديل أو اللون أو تفاصيل أخرى"></div>
+  </div>
+  <p class="help">إذا أدخلتِ مدخرات موجودة مسبقًا، فهي مجرد قيمة افتتاحية للهدف ولن تُخصم من الرصيد مرة أخرى.</p>
+  <div class="actions"><button class="btn" type="submit">حفظ الهدف</button><button class="btn light" type="button" onclick="closeGoal()">إلغاء</button></div>
+ </form>
+</div></div>
+
+<script>
+const STORE='velora_finance_complete_v2';
+const fallback='https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80';
+const starterGoals=[
+ ['laptop','حاسوب محمول','تقنية',120000,'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80'],
+ ['passport','رحلة أحلامي','سفر',200000,'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80'],
+ ['makeup','مجموعة مكياج','جمال',25000,'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80'],
+ ['clothes','ملابس أنيقة','ملابس',35000,'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80'],
+ ['pajamas','بيجامات ناعمة','ملابس',12000,'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80'],
+ ['ipad','iPad للدراسة','تقنية',90000,'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=80'],
+ ['books','كتب ودورات','دراسة',18000,'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=900&q=80'],
+ ['shoes','حذاء أنيق','ملابس',18000,'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80'],
+ ['skincare','عناية بالبشرة','جمال',15000,'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=80'],
+ ['home','تجهيز غرفتي','منزل',50000,'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80'],
+ ['jewelry','مجوهرات ناعمة','أخرى',30000,'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80'],
+ ['bag','حقيبة يومية','ملابس',22000,'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80']
+];
+let db={opening:0,salary:0,goals:[],transactions:[],salaryMonths:[]};
+let goalFilter='الكل';
+
+function freshGoals(){return starterGoals.map(a=>({id:a[0],name:a[1],cat:a[2],price:a[3],saved:0,image:a[4],note:''}));}
 function load(){
  try{
-  const saved=localStorage.getItem(KEY);
-  goals=saved?JSON.parse(saved):defaultGoals.map(g=>({...g}));
-  if(!Array.isArray(goals)) goals=defaultGoals.map(g=>({...g}));
- }catch(e){goals=defaultGoals.map(g=>({...g}));}
- document.getElementById('monthlySaving').value=localStorage.getItem('velora_monthly')||'';
- document.getElementById('myNote').value=localStorage.getItem('velora_note')||'';
+  const raw=localStorage.getItem(STORE);
+  if(raw){const parsed=JSON.parse(raw);db={...db,...parsed};}
+  else db.goals=freshGoals();
+ }catch(e){db.goals=freshGoals();}
+ if(!Array.isArray(db.goals))db.goals=freshGoals();
+ if(!Array.isArray(db.transactions))db.transactions=[];
+ if(!Array.isArray(db.salaryMonths))db.salaryMonths=[];
+ document.getElementById('openingBalance').value=db.opening||0;
+ document.getElementById('salary').value=db.salary||0;
+ document.getElementById('txDate').value=today();
 }
-function persist(){
+function save(){
  try{
-  localStorage.setItem(KEY,JSON.stringify(goals));
-  localStorage.setItem('velora_monthly',document.getElementById('monthlySaving').value);
- }catch(e){toast('تعذر الحفظ في المتصفح. تأكدي من إعداداته.');}
+  db.opening=Number(db.opening)||0;db.salary=Number(db.salary)||0;
+  localStorage.setItem(STORE,JSON.stringify(db));
+ }catch(e){toast('تعذر الحفظ في المتصفح. صدّري نسخة احتياطية.');}
 }
-function money(n){return Math.round(n).toLocaleString('fr-FR')+' دج';}
+function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function monthKey(date){return String(date||'').slice(0,7);}
+function money(n){return Math.round(Number(n)||0).toLocaleString('fr-FR')+' دج';}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function validImage(s){
- try{const u=new URL(s);return ['https:','http:'].includes(u.protocol)?u.href:fallbackImage;}
- catch(e){return fallbackImage;}
+function safeUrl(s){try{let u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:fallback;}catch(e){return fallback;}}
+function sumTx(type,month=null){return db.transactions.filter(t=>t.type===type&&(!month||monthKey(t.date)===month)).reduce((s,t)=>s+Number(t.amount||0),0);}
+function balance(){return Number(db.opening||0)+sumTx('income')-sumTx('expense');}
+function remaining(g){return Math.max(0,Number(g.price)-Number(g.saved));}
+function pct(g){return g.price>0?Math.min(100,Math.round(g.saved/g.price*100)):0;}
+function toast(s){const el=document.getElementById('toast');el.textContent=s;el.classList.add('show');clearTimeout(window.vt);window.vt=setTimeout(()=>el.classList.remove('show'),2600);}
+
+function showPage(name){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));
+ document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
+ window.scrollTo({top:0,behavior:'smooth'});
 }
-function safePct(g){return g.price>0?Math.min(100,Math.round(g.saved/g.price*100)):0;}
-function remaining(g){return Math.max(0,g.price-g.saved);}
+document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b)showPage(b.dataset.page);});
+
 function render(){
- const total=goals.reduce((s,g)=>s+g.price,0);
- const saved=goals.reduce((s,g)=>s+Math.min(g.saved,g.price),0);
- const left=goals.reduce((s,g)=>s+remaining(g),0);
- document.getElementById('totalTargets').textContent=money(total);
- document.getElementById('totalSaved').textContent=money(saved);
- document.getElementById('totalRemaining').textContent=money(left);
- document.getElementById('totalProgress').textContent=(total?Math.round(saved/total*100):0)+'%';
- document.getElementById('planRemaining').textContent=money(left);
- const monthly=Number(document.getElementById('monthlySaving').value)||0;
- document.getElementById('planTime').textContent=left===0?'كل أهدافك مكتملة 🎉':monthly>0?Math.ceil(left/monthly)+' شهر تقريبًا':'أدخلي مبلغ الادخار';
- const board=document.getElementById('board');
- const shown=goals.filter(g=>activeFilter==='الكل'||g.category===activeFilter);
- board.innerHTML=shown.map(g=>{
-  const pct=safePct(g),left=remaining(g);
-  return `<article class="goal">
-   <div class="goal-image">
-    <img src="${esc(validImage(g.image))}" alt="${esc(g.name)}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'">
-    <span class="goal-category">${esc(g.category)}</span>
-   </div>
-   <div class="goal-body">
-    <div class="goal-title-row"><div><h3 class="goal-title">${esc(g.name)}</h3><p class="goal-note">${esc(g.note||'حلم يستحق أن يتحقق ♡')}</p></div>
-    <button class="menu-btn" title="تعديل الهدف" onclick="editGoal('${esc(g.id)}')">✎</button></div>
-    <div class="money-line"><span>السعر الكامل</span><strong>${money(g.price)}</strong></div>
-    <div class="money-line" style="margin-top:7px"><span>جمعتُ</span><strong>${money(g.saved)}</strong></div>
-    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
-    <div class="progress-foot"><b>${pct}% مكتمل</b><span>${left===0?'تحقق الحلم! 🎉':'باقي '+money(left)}</span></div>
-    <div class="goal-actions">
-     <button class="save-btn" onclick="addSavings('${esc(g.id)}')">＋ أضف مدخرات</button>
-     <button onclick="editGoal('${esc(g.id)}')">تعديل</button>
-     <button onclick="deleteGoal('${esc(g.id)}')">حذف</button>
-    </div>
-   </div>
-  </article>`;
- }).join('');
- board.insertAdjacentHTML('beforeend',`<button class="add-card" onclick="openModal()"><span>＋</span><strong>أضيفي حلمًا جديدًا</strong><small>كل حلم يبدأ بخطوة صغيرة ♡</small></button>`);
- document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter));
+ const inc=sumTx('income'),exp=sumTx('expense'),bal=balance(),month=monthKey(today());
+ const mi=sumTx('income',month),me=sumTx('expense',month);
+ document.getElementById('sBalance').textContent=money(bal);
+ document.getElementById('sIncome').textContent=money(inc);
+ document.getElementById('sExpense').textContent=money(exp);
+ const goalTotal=db.goals.reduce((s,g)=>s+Number(g.price||0),0);
+ const goalSaved=db.goals.reduce((s,g)=>s+Math.min(Number(g.saved||0),Number(g.price||0)),0);
+ const goalLeft=db.goals.reduce((s,g)=>s+remaining(g),0);
+ document.getElementById('sGoals').textContent=money(goalLeft);
+ document.getElementById('monthIncome').textContent=money(mi);
+ document.getElementById('monthExpense').textContent=money(me);
+ document.getElementById('monthLeft').textContent=money(mi-me);
+ document.getElementById('expenseBar').style.width=(mi?Math.min(100,me/mi*100):0)+'%';
+ document.getElementById('salaryPreview').textContent=money(db.salary);
+ document.getElementById('gTotal').textContent=money(goalTotal);
+ document.getElementById('gSaved').textContent=money(goalSaved);
+ document.getElementById('gLeft').textContent=money(goalLeft);
+ document.getElementById('gPct').textContent=(goalTotal?Math.round(goalSaved/goalTotal*100):0)+'%';
+ renderTransactions();renderCategories();renderGoals();
 }
-function openModal(g=null){
+function saveOpening(){
+ const n=Number(document.getElementById('openingBalance').value);
+ if(!Number.isFinite(n)||n<0){toast('أدخلي رصيدًا صحيحًا');return;}
+ db.opening=n;save();render();toast('تم حفظ الرصيد الافتتاحي ♡');
+}
+function saveSalary(){
+ const n=Number(document.getElementById('salary').value);
+ if(!Number.isFinite(n)||n<0){toast('أدخلي راتبًا صحيحًا');return;}
+ db.salary=n;save();render();toast('تم حفظ راتبك المتوقع');
+}
+function addSalary(){
+ if(!db.salary||db.salary<=0){toast('احفظي قيمة الراتب أولًا');return;}
+ const m=monthKey(today());
+ if(db.salaryMonths.includes(m)){toast('تم تسجيل الراتب لهذا الشهر بالفعل');return;}
+ db.transactions.push({id:uid(),type:'income',amount:db.salary,category:'راتب',date:today(),description:'الراتب الشهري'});
+ db.salaryMonths.push(m);save();render();toast('تم تسجيل الراتب في رصيدك 💚');
+}
+function uid(){return 't_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);}
+document.getElementById('txForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const amount=Number(document.getElementById('txAmount').value);
+ if(!Number.isFinite(amount)||amount<=0){toast('أدخلي مبلغًا أكبر من صفر');return;}
+ const t={id:uid(),type:document.getElementById('txType').value,amount,category:document.getElementById('txCategory').value,date:document.getElementById('txDate').value||today(),description:document.getElementById('txDescription').value.trim()};
+ if(t.type==='expense'&&amount>balance()&&!confirm('هذا المصروف أكبر من رصيدك الحالي. هل تريدين تسجيله على أي حال؟'))return;
+ db.transactions.push(t);save();render();e.target.reset();document.getElementById('txDate').value=today();toast('تم حفظ العملية بنجاح ♡');
+});
+document.getElementById('txFilter').addEventListener('change',renderTransactions);
+function txRows(list){
+ if(!list.length)return '<div class="empty">لا توجد عمليات مسجلة حتى الآن 🌷</div>';
+ return '<table class="table"><thead><tr><th>التاريخ</th><th>الوصف</th><th>الفئة</th><th>المبلغ</th><th>تعديل</th></tr></thead><tbody>'+
+ list.map(t=>`<tr><td>${esc(t.date)}</td><td>${esc(t.description||t.category)}</td><td>${esc(t.category)}</td><td class="${t.type==='income'?'income':'expense'}">${t.type==='income'?'+':'−'}${money(t.amount)}</td><td><button class="small-btn" onclick="editTx('${esc(t.id)}')">تعديل</button><button class="small-btn" onclick="deleteTx('${esc(t.id)}')">حذف</button></td></tr>`).join('')+'</tbody></table>';
+}
+function renderTransactions(){
+ const sorted=[...db.transactions].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ document.getElementById('homeRecent').innerHTML=txRows(sorted.slice(0,5));
+ const f=document.getElementById('txFilter').value;
+ document.getElementById('txTable').innerHTML=txRows(sorted.filter(t=>f==='all'||t.type===f));
+}
+function editTx(id){
+ const t=db.transactions.find(x=>x.id===id);if(!t)return;
+ const amount=prompt('عدّلي المبلغ بالدينار:',t.amount);if(amount===null)return;
+ const n=Number(amount);if(!Number.isFinite(n)||n<=0){toast('المبلغ غير صحيح');return;}
+ const desc=prompt('عدّلي الوصف:',t.description||'');if(desc===null)return;
+ const date=prompt('التاريخ بصيغة YYYY-MM-DD:',t.date||today());if(date===null)return;
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){toast('صيغة التاريخ غير صحيحة');return;}
+ t.amount=n;t.description=desc.trim();t.date=date;save();render();toast('تم تعديل العملية');
+}
+function deleteTx(id){
+ const t=db.transactions.find(x=>x.id===id);if(!t)return;
+ if(!confirm('هل تريدين حذف هذه العملية؟ سيُعاد احتساب الرصيد.'))return;
+ db.transactions=db.transactions.filter(x=>x.id!==id);
+ if(t.category==='راتب'&&t.description==='الراتب الشهري'&&monthKey(t.date)===monthKey(today()))db.salaryMonths=db.salaryMonths.filter(m=>m!==monthKey(t.date));
+ save();render();toast('تم حذف العملية');
+}
+function renderCategories(){
+ const month=monthKey(today()),map={};
+ db.transactions.filter(t=>t.type==='expense'&&monthKey(t.date)===month).forEach(t=>map[t.category]=(map[t.category]||0)+Number(t.amount));
+ const entries=Object.entries(map).sort((a,b)=>b[1]-a[1]);
+ document.getElementById('categorySummary').innerHTML=entries.length?entries.map(([k,v])=>`<div class="budget-row" style="margin:14px 0"><div class="line"><span>${esc(k)}</span><strong>${money(v)}</strong></div><div class="track"><div class="fill" style="width:${Math.min(100,v/Math.max(...entries.map(x=>x[1]))*100)}%"></div></div></div>`).join(''):'<div class="empty">سجّلي أول مصروف ليظهر ملخص الفئات هنا.</div>';
+}
+
+function openGoal(g=null){
  document.getElementById('goalForm').reset();
- document.getElementById('editId').value=g?g.id:'';
- document.getElementById('modalTitle').textContent=g?'✎ تعديل حلمي':'✨ أضيفي حلمًا جديدًا';
+ document.getElementById('goalId').value=g?g.id:'';
+ document.getElementById('goalModalTitle').textContent=g?'✎ تعديل الهدف':'✨ إضافة هدف جديد';
  document.getElementById('goalName').value=g?g.name:'';
- document.getElementById('goalCategory').value=g?g.category:'تقنية';
+ document.getElementById('goalCat').value=g?g.cat:'تقنية';
  document.getElementById('goalPrice').value=g?g.price:'';
  document.getElementById('goalSaved').value=g?g.saved:0;
- document.getElementById('goalImage').value=g?g.image:'';
+ document.getElementById('goalImage').value=g&&g.image!==fallback?g.image:'';
  document.getElementById('goalNote').value=g?g.note:'';
  document.getElementById('goalModal').classList.add('open');
 }
-function closeModal(){document.getElementById('goalModal').classList.remove('open');}
-function editGoal(id){const g=goals.find(x=>x.id===id);if(g)openModal(g);}
+function closeGoal(){document.getElementById('goalModal').classList.remove('open');}
 document.getElementById('goalForm').addEventListener('submit',e=>{
  e.preventDefault();
- const id=document.getElementById('editId').value;
- const price=Number(document.getElementById('goalPrice').value);
- const saved=Number(document.getElementById('goalSaved').value);
- if(!Number.isFinite(price)||price<=0||!Number.isFinite(saved)||saved<0){toast('تحققي من المبالغ المدخلة');return;}
- const g={
-  id:id||('goal_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)),
-  name:document.getElementById('goalName').value.trim(),
-  category:document.getElementById('goalCategory').value,
-  price,saved,
-  image:validImage(document.getElementById('goalImage').value||fallbackImage),
-  note:document.getElementById('goalNote').value.trim()
- };
- if(!g.name){toast('اكتبي اسم الهدف أولًا');return;}
- const idx=goals.findIndex(x=>x.id===id);
- if(idx>=0)goals[idx]=g;else goals.unshift(g);
- persist();render();closeModal();toast(idx>=0?'تم تحديث حلمك ♡':'تمت إضافة حلم جديد ♡');
+ const id=document.getElementById('goalId').value,price=Number(document.getElementById('goalPrice').value),saved=Number(document.getElementById('goalSaved').value);
+ if(!Number.isFinite(price)||price<=0||!Number.isFinite(saved)||saved<0){toast('تحققي من السعر والمدخرات');return;}
+ const g={id:id||uid(),name:document.getElementById('goalName').value.trim(),cat:document.getElementById('goalCat').value,price,saved,image:safeUrl(document.getElementById('goalImage').value||fallback),note:document.getElementById('goalNote').value.trim()};
+ if(!g.name){toast('اكتبي اسم الهدف');return;}
+ const idx=db.goals.findIndex(x=>x.id===id);
+ if(idx>=0)db.goals[idx]=g;else db.goals.unshift(g);
+ save();render();closeGoal();toast(idx>=0?'تم تعديل الهدف ♡':'تمت إضافة هدف جديد ♡');
 });
-function addSavings(id){
- const g=goals.find(x=>x.id===id);if(!g)return;
- const amount=prompt('كم أضفتِ إلى مدخرات "'+g.name+'" بالدينار؟','1000');
- if(amount===null)return;
- const n=Number(amount);
- if(!Number.isFinite(n)||n<=0){toast('أدخلي مبلغًا صحيحًا أكبر من صفر');return;}
- g.saved+=n;persist();render();
- toast(g.saved>=g.price?'مبروك! وصلتِ إلى هدفك 🎉':'تمت إضافة مدخراتك بنجاح ♡');
+function contribute(id){
+ const g=db.goals.find(x=>x.id===id);if(!g)return;
+ const a=prompt('كم تريدين إضافة إلى مدخرات "'+g.name+'"؟\\nسيُخصم المبلغ من رصيدك ويسجل كادخار.', '1000');
+ if(a===null)return;const n=Number(a);
+ if(!Number.isFinite(n)||n<=0){toast('أدخلي مبلغًا صحيحًا');return;}
+ if(n>balance()&&!confirm('المبلغ أكبر من رصيدك الحالي. هل تريدين تسجيل الادخار على أي حال؟'))return;
+ g.saved+=n;
+ db.transactions.push({id:uid(),type:'expense',amount:n,category:'ادخار الأهداف',date:today(),description:'ادخار لهدف: '+g.name,goalId:g.id});
+ save();render();toast('تم تحديث مدخرات هدفك 🌱');
 }
 function deleteGoal(id){
- const g=goals.find(x=>x.id===id);if(!g)return;
- if(!confirm('هل تريدين حذف هدف "'+g.name+'"؟'))return;
- goals=goals.filter(x=>x.id!==id);persist();render();toast('تم حذف الهدف');
+ const g=db.goals.find(x=>x.id===id);if(!g)return;
+ if(!confirm('حذف الهدف "'+g.name+'"؟ لن تُحذف عمليات الادخار السابقة من سجل المصاريف.'))return;
+ db.goals=db.goals.filter(x=>x.id!==id);save();render();toast('تم حذف الهدف');
 }
-function toast(msg){
- const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
- clearTimeout(window.veloraToastTimer);
- window.veloraToastTimer=setTimeout(()=>el.classList.remove('show'),2600);
+function renderGoals(){
+ const list=db.goals.filter(g=>goalFilter==='الكل'||g.cat===goalFilter);
+ const board=document.getElementById('goalBoard');
+ board.innerHTML=list.map(g=>`<article class="goal">
+  <div class="goal-img"><img src="${esc(safeUrl(g.image))}" alt="${esc(g.name)}" loading="lazy" onerror="this.onerror=null;this.src='${fallback}'"><span class="tag">${esc(g.cat)}</span></div>
+  <div class="goal-body"><h3>${esc(g.name)}</h3><p class="goal-note">${esc(g.note||'حلم يستحق أن يتحقق ♡')}</p>
+   <div class="line"><span>السعر</span><strong>${money(g.price)}</strong></div>
+   <div class="line"><span>جمعتِ</span><strong>${money(g.saved)}</strong></div>
+   <div class="track"><div class="fill" style="width:${pct(g)}%"></div></div>
+   <div class="progress-label"><b>${pct(g)}% مكتمل</b><span>${remaining(g)===0?'تحقق الحلم! 🎉':'المتبقي '+money(remaining(g))}</span></div>
+   <div class="goal-buttons"><button class="contribute" onclick="contribute('${esc(g.id)}')">＋ ادخار</button><button onclick="openGoal(db.goals.find(x=>x.id==='${esc(g.id)}'))">تعديل</button><button onclick="deleteGoal('${esc(g.id)}')">حذف</button></div>
+  </div></article>`).join('');
+ board.insertAdjacentHTML('beforeend',`<button class="goal" style="min-height:250px;border:1px dashed var(--rose);background:#f7e8e3;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9b6968;padding:20px" onclick="openGoal()"><span style="font-size:42px">＋</span><strong>أضيفي حلمًا جديدًا</strong><small style="margin-top:8px">حاسوب، سفر، ملابس أو أي شيء تتمنينه ♡</small></button>`);
+ document.querySelectorAll('#goalFilters [data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===goalFilter));
 }
-document.getElementById('filters').addEventListener('click',e=>{
- const b=e.target.closest('[data-filter]');if(!b)return;
- activeFilter=b.dataset.filter;render();
-});
-document.getElementById('monthlySaving').addEventListener('input',()=>{
- persist();render();
-});
-function saveNote(){
- try{localStorage.setItem('velora_note',document.getElementById('myNote').value);toast('حُفظت ملاحظتك 🤍');}
- catch(e){toast('تعذر حفظ الملاحظة');}
-}
+document.getElementById('goalFilters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;goalFilter=b.dataset.filter;renderGoals();});
+document.getElementById('goalModal').addEventListener('click',e=>{if(e.target.id==='goalModal')closeGoal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGoal();});
+
 function exportData(){
- const data={app:'Velora',exportedAt:new Date().toISOString(),goals,monthlySaving:document.getElementById('monthlySaving').value,note:document.getElementById('myNote').value};
- const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download='velora-dreams.json';a.click();URL.revokeObjectURL(url);
- toast('تم تجهيز نسخة من بياناتك');
+ const blob=new Blob([JSON.stringify({...db,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='velora-backup.json';a.click();URL.revokeObjectURL(url);toast('تم تجهيز النسخة الاحتياطية');
 }
-document.getElementById('goalModal').addEventListener('click',e=>{
- if(e.target.id==='goalModal')closeModal();
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function importData(){
+ const file=document.getElementById('importFile').files[0];if(!file){toast('اختاري ملف JSON أولًا');return;}
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const x=JSON.parse(reader.result);
+   if(!Array.isArray(x.goals)||!Array.isArray(x.transactions))throw Error('invalid');
+   if(!confirm('سيتم استبدال البيانات الحالية بالنسخة المختارة. هل تتابعين؟'))return;
+   db={opening:0,salary:0,goals:[],transactions:[],salaryMonths:[],...x};save();
+   document.getElementById('openingBalance').value=db.opening;document.getElementById('salary').value=db.salary;render();toast('تمت استعادة بياناتك');
+  }catch(e){toast('الملف غير صالح أو ليس نسخة من Velora');}
+ };
+ reader.readAsText(file);
+}
+function resetAll(){
+ if(!confirm('هل أنتِ متأكدة؟ سيُحذف كل ما حفظته Velora في هذا المتصفح.'))return;
+ if(!confirm('تأكيد أخير: هل تريدين مسح جميع البيانات نهائيًا؟'))return;
+ localStorage.removeItem(STORE);db={opening:0,salary:0,goals:freshGoals(),transactions:[],salaryMonths:[]};save();
+ document.getElementById('openingBalance').value=0;document.getElementById('salary').value=0;render();toast('تمت إعادة ضبط البيانات');
+}
 load();render();
 </script>
 </body>
