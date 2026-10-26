@@ -4,621 +4,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Velora — يومكِ، مالكِ، عالمكِ</title>
+<title>VELORA | My Money Journal</title>
 <style>
-:root {
-  --cream:#fff8ed; --paper:rgba(255,253,247,.95);
-  --brown:#684a37; --dark:#38291f; --tan:#d8b99a;
-  --gold:#b89456; --olive:#687456; --pink:#ead4c9;
-  --muted:#82776b; --line:#e8d9c8;
-  --red:#a4483f; --green:#50734e;
-  --shadow:0 12px 32px #60452b12;
-}
+:root{--ink:#39271e;--coffee:#624331;--gold:#c9a66b;--cream:#fff8ed;--line:#ead9c3;--rose:#b96f64;--green:#718568}
 *{box-sizing:border-box}
-body{
-  margin:0;color:var(--dark);
-  font-family:"Segoe UI",Tahoma,Arial,sans-serif;
-  background:linear-gradient(135deg,#f5e4d4,#fff8ed 45%,#e8d6c2);
-  min-height:100vh;background-attachment:fixed
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  opacity:.35;
-  background-image:radial-gradient(#b8945633 1px,transparent 1px),
-  radial-gradient(#fff9 1px,transparent 1px);
-  background-size:25px 25px,41px 41px;
-  background-position:0 0,12px 10px;z-index:-1
-}
-header{
-  padding:22px 5%;display:flex;justify-content:space-between;
-  align-items:center;gap:15px;flex-wrap:wrap;
-  background:#fff9f0d9;border-bottom:1px solid var(--line);
-  backdrop-filter:blur(10px)
-}
+body{margin:0;font-family:"Segoe UI",Tahoma,sans-serif;color:var(--ink);background:#6b4a35;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(120deg,#302018b8,#67442b55,#e6c69c55),url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=85") center/cover}
+body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,#35231922,#35231970)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:1400px;margin:auto;padding:22px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff6e7;margin-bottom:20px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
-.logo{
-  height:52px;width:52px;border-radius:18px;
-  background:linear-gradient(145deg,#806047,#493427);
-  color:#f4dfb9;display:grid;place-items:center;
-  font:30px Georgia;box-shadow:0 6px 15px #38291f24
-}
-.brand h1{font:bold 27px Georgia,serif;letter-spacing:3px;margin:0}
-.brand p{font-size:10px;letter-spacing:2px;margin:5px 0 0;color:var(--muted)}
-.header-right{font-size:13px;color:var(--brown);line-height:1.8}
-main{max-width:1250px;padding:24px 18px 55px;margin:auto}
-.hero{
-  border-radius:25px;padding:30px;
-  background:linear-gradient(115deg,#5a4131ee,#8a674ce8);
-  color:#fff9ef;position:relative;overflow:hidden;
-  margin-bottom:20px;box-shadow:var(--shadow)
-}
-.hero:after{
-  content:"♡  🧸  ✦";position:absolute;left:20px;bottom:4px;
-  font-size:45px;opacity:.17;letter-spacing:8px
-}
-.eyebrow{font-size:11px;letter-spacing:2px;color:#e7cf9f;font-weight:bold}
-.hero h2{font-size:clamp(24px,4vw,37px);margin:10px 0}
-.hero p{max-width:690px;line-height:1.9;color:#f8eadb;font-size:14px;margin:0}
-.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.tag{border:1px solid #ffffff45;border-radius:30px;padding:7px 12px;font-size:12px;background:#ffffff12}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
-.card{
-  background:var(--paper);border:1px solid #e7d8c7;
-  border-radius:20px;padding:21px;box-shadow:var(--shadow);
-  min-width:0;backdrop-filter:blur(7px)
-}
-.s12{grid-column:span 12}.s8{grid-column:span 8}
-.s7{grid-column:span 7}.s6{grid-column:span 6}
-.s5{grid-column:span 5}.s4{grid-column:span 4}
-.title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
-.title h3{font-size:16px;margin:0}
-.muted{color:var(--muted);font-size:12px;line-height:1.8}
-.big{font-size:30px;font-weight:750;overflow-wrap:anywhere;margin:9px 0}
-.brown{color:var(--brown)}.green{color:var(--green)}.red{color:var(--red)}
-.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.stat{background:#f8eee2;border-radius:15px;padding:15px;min-width:0}
-.stat .label{font-size:11px;color:var(--muted)}
-.stat strong{display:block;font-size:21px;margin-top:8px;overflow-wrap:anywhere}
-.fieldgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
-.full{grid-column:1/-1}
-label{display:block;font-size:12px;color:#655749;margin-bottom:12px}
-input,select,textarea{
-  width:100%;border:1px solid #dfcebb;border-radius:11px;
-  padding:11px;background:#fffdf9;color:var(--dark);
-  margin-top:6px;font:inherit;font-size:13px;min-width:0
-}
-button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:10px 14px;font-size:12px;transition:.18s}
-button:hover{transform:translateY(-1px)}
-.primary{background:var(--brown);color:#fff8ed}
-.secondary{background:#eee0cf;color:var(--brown);border:1px solid #dfc9b1}
-.ghost{background:transparent;color:var(--brown);border:1px solid var(--line)}
-.danger{background:#f5e4df;color:var(--red)}
-.btnrow{display:flex;flex-wrap:wrap;gap:8px}
-.notice{padding:13px 15px;border-radius:13px;background:#f5eadb;color:#72553e;font-size:12px;line-height:1.9;margin:12px 0}
-.notice.warn{background:#f8e7e1;color:#93463c}
-.notice.good{background:#eaf0e3;color:#456540}
-.sep{border:0;border-top:1px solid var(--line);margin:18px 0}
-.progress{height:8px;background:#eee2d4;border-radius:30px;overflow:hidden;margin:8px 0}
-.progress span{display:block;height:100%;background:linear-gradient(90deg,#a78358,#687456);border-radius:30px}
-.expense-item,.purchase-item{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:12px 0;border-bottom:1px solid var(--line)
-}
-.expense-item:last-child,.purchase-item:last-child{border-bottom:0}
-.item-name{font-weight:650;font-size:13px}
-.item-sub{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.6}
-.amount{font-weight:700;white-space:nowrap;font-size:13px}
-.mini{font-size:11px;padding:6px 9px}
-.empty{text-align:center;padding:20px 5px;color:var(--muted);font-size:13px;line-height:1.8}
-.budgethead{display:flex;justify-content:space-between;gap:8px;font-size:12px}
-.checkline{display:flex;gap:10px;align-items:flex-start;margin:0;padding:12px 0;border-bottom:1px solid var(--line)}
-.checkline input{width:17px;height:17px;margin:2px 0 0;accent-color:var(--olive);flex-shrink:0}
-.pill{font-size:10px;border-radius:20px;padding:5px 8px;background:#f0e5d8;color:var(--brown)}
-.hobbygrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.hobby{padding:14px 6px;border:1px solid var(--line);border-radius:15px;text-align:center;background:#fffaf3;font-size:12px}
-.hobby span{display:block;font-size:25px;margin-bottom:7px}
-.hobby small{color:var(--muted);font-size:10px}
-.monthlyrow{display:grid;grid-template-columns:75px 1fr 75px;gap:10px;align-items:center;font-size:12px;margin:12px 0}
-.monthbar{height:9px;border-radius:20px;background:#eee2d4;overflow:hidden}
-.monthbar span{height:100%;display:block;background:var(--olive);border-radius:20px}
-footer{text-align:center;padding:25px 10px;color:var(--muted);font:12px Georgia,serif;line-height:2}
-#toast{display:none;position:fixed;bottom:18px;left:18px;right:18px;margin:auto;width:max-content;max-width:90%;background:#493427;color:white;border-radius:12px;padding:13px 18px;z-index:9;box-shadow:var(--shadow);font-size:13px}
-@media(max-width:820px){
-  .s8,.s7,.s6,.s5,.s4{grid-column:span 12}
-  .hobbygrid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .summary{grid-template-columns:1fr}
-  .stat{padding:12px}.stat strong{font-size:19px}
-}
-@media(max-width:450px){
-  main{padding:15px 10px 35px}.card{padding:16px}
-  .fieldgrid{grid-template-columns:1fr}.full{grid-column:auto}
-  .hobbygrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .hero{padding:23px 19px}.brand h1{font-size:23px}
-}
+.logo{width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--gold);border-radius:17px;background:#fff2df25;font-size:28px}
+.brand h1{font:28px Georgia,serif;letter-spacing:5px;margin:0}
+.brand small{letter-spacing:2px;color:#e9cf9e;font-size:10px}
+button{border:1px solid var(--line);border-radius:11px;padding:10px 13px;background:#fffaf2;color:var(--ink);font-weight:700}
+button.primary{background:var(--coffee);color:white;border-color:var(--coffee)}
+button.gold{background:var(--gold);border-color:var(--gold)}
+button.danger{color:#a13f37}
+.glass{border:1px solid #fff5e5a0;border-radius:23px;box-shadow:0 15px 45px #29170f2a;backdrop-filter:blur(12px)}
+.hero{display:grid;grid-template-columns:1.35fr .8fr;gap:16px;margin-bottom:16px}
+.welcome{padding:28px;background:linear-gradient(130deg,#fffaf0f5,#f0dfc8f5);position:relative;overflow:hidden}
+.welcome:after{content:"🦢  ✦  ♡";position:absolute;left:10px;bottom:0;font-size:50px;opacity:.10}
+.eyebrow{font-size:11px;letter-spacing:2px;color:#886344;font-weight:800}
+h2{font-size:23px;margin:10px 0}
+.welcome h2{font:clamp(30px,4vw,45px)/1.2 Georgia,serif}
+p{line-height:1.8}
+.muted{color:#8a7767;font-size:12px}
+.statsline{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.chip{background:#fffdf8;border:1px solid var(--line);border-radius:13px;padding:12px;min-width:120px}
+.chip small{display:block;color:#8a7767}.chip strong{display:block;margin-top:5px;font-size:19px}
+.payday{padding:24px;color:#fff4e4;background:linear-gradient(145deg,#39271f,#79543c);display:flex;flex-direction:column;justify-content:space-between}
+.payday .eyebrow{color:#e8c992}.payday h2{font:27px Georgia,serif}
+.countdown{display:flex;gap:8px;margin:15px 0}
+.count{flex:1;text-align:center;background:#ffffff12;border:1px solid #ffffff22;border-radius:12px;padding:10px 4px}
+.count b{display:block;color:#f3d59c;font-size:26px}.count small{font-size:10px}
+.payday input{max-width:170px}
+.panel{background:#fffdf8f7;border:1px solid #fff8eb;border-radius:21px;padding:21px;margin-bottom:16px;box-shadow:0 13px 38px #29170f22}
+.heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.heading h2{margin:0}.heading p{margin:5px 0 0;color:#8a7767;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.metric{padding:16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#fffefa,#f8eddd)}
+.metric small{color:#8a7767}.metric strong{font-size:24px;display:block;margin:12px 0 5px;overflow-wrap:anywhere}
+.metric .symbol{float:left;font-size:20px}
+.progress{height:8px;border-radius:20px;background:#eee0cd;overflow:hidden;margin-top:9px}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#d7b578,#76503a);border-radius:20px;transition:width .25s}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field label{display:block;font-size:12px;font-weight:700;color:#8a7767;margin-bottom:6px}
+input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fffefa;color:var(--ink);min-width:0}
+input:focus,select:focus,textarea:focus{outline:2px solid #c9a66b55;border-color:var(--gold)}
+.wide{grid-column:1/-1}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.notice{display:none;border-radius:12px;padding:12px;margin-bottom:14px;font-size:13px;line-height:1.7}
+.notice.show{display:block}.notice.ok{background:#eaf1e6;color:#476440}.notice.warn{background:#fff0dc;color:#8a571f}.notice.bad{background:#ffedeb;color:#9b4038}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:13px}
+table{width:100%;border-collapse:collapse;min-width:520px;background:#fffefa}
+th,td{text-align:right;padding:12px;border-bottom:1px solid #f0e5d7;font-size:12px}
+th{background:#f5e9d7;color:#76553d}tr:last-child td{border-bottom:0}
+.pill{background:#f1e4d1;border-radius:30px;padding:5px 8px;white-space:nowrap}
+.rowbtn{padding:6px 8px;margin:2px;font-size:11px}
+.daylayout{display:grid;grid-template-columns:.75fr 1.25fr;gap:14px}
+.daycard{background:linear-gradient(145deg,#39271f,#79543c);color:#fff3df;border-radius:17px;padding:18px}
+.daycard h3{font-size:28px;margin:12px 0}.daycard p{font-size:12px;color:#ead8c3}
+.daylist{display:grid;gap:7px;max-height:350px;overflow:auto}
+.dayitem{display:flex;justify-content:space-between;align-items:center;text-align:right;gap:8px;background:#fffdf8;border:1px solid var(--line);border-radius:11px;padding:11px}
+.dayitem.active{border-color:var(--gold);background:#fbefd9}
+.dayitem strong,.dayitem small{display:block}.dayitem small{color:#8a7767;font-size:11px}.dayitem b{white-space:nowrap}
+.barrow{display:grid;grid-template-columns:95px 1fr 110px;gap:8px;align-items:center;margin:13px 0;font-size:12px}
+.bar{height:11px;background:#efe3d3;border-radius:20px;overflow:hidden}.bar span{height:100%;display:block;background:linear-gradient(90deg,#d4b176,#6c4935)}
+.goals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.goal{padding:14px;border:1px solid var(--line);border-radius:15px;background:#fffefa}
+.goal h3{font-size:14px;margin:0}.goal input{margin-top:8px;padding:8px}
+.goalhead{display:flex;align-items:center;gap:9px}.emoji{font-size:24px;background:#f3e6d3;padding:8px;border-radius:11px}
+.goalmeta{font-size:11px;color:#8a7767;margin-top:9px}
+.toastbox{position:fixed;bottom:15px;left:15px;width:min(360px,calc(100% - 30px));display:grid;gap:8px;z-index:10}
+.toast{padding:13px 15px;background:#39271f;color:white;border:1px solid var(--gold);border-radius:12px;box-shadow:0 10px 30px #0003;font-size:13px}
+.empty{text-align:center;padding:22px;color:#8a7767}
+footer{text-align:center;padding:12px 0 28px;color:#fff1d8;font-size:11px}
+@media(max-width:900px){.hero,.two{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.goals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.app{padding:11px}.panel{padding:14px}.welcome{padding:20px}.grid{gap:8px}.metric{padding:11px}.metric strong{font-size:19px}.daylayout{grid-template-columns:1fr}.goals{grid-template-columns:1fr}.barrow{grid-template-columns:75px 1fr 90px;font-size:10px}.brand h1{font-size:22px}}
 </style>
 </head>
 <body>
+<div class="app">
 <header>
-  <div class="brand">
-    <div class="logo">V</div>
-    <div><h1>VELORA</h1><p>YOUR MONEY · YOUR LITTLE WORLD</p></div>
-  </div>
-  <div class="header-right">☕ بني دافئ، خطط هادئة، وأحلام تكبر كل يوم<br><span id="headerDate"></span></div>
+ <div class="brand"><div class="logo">🦢</div><div><h1>VELORA</h1><small>YOUR MONEY, WITH GRACE</small></div></div>
+ <div class="actions">
+  <button class="gold" id="notify">🔔 تفعيل الإشعارات</button>
+  <button id="export">تصدير نسخة احتياطية</button>
+  <button id="import">استيراد نسخة</button>
+  <input type="file" id="file" accept=".json,application/json" hidden>
+ </div>
 </header>
 
-<main>
 <section class="hero">
-  <div class="eyebrow">A SOFTER WAY TO MANAGE MONEY</div>
-  <h2>أهلًا بكِ في عالمكِ الصغير 🤎</h2>
-  <p>كل دينار له دور، وكل حلم يستحق خطة. خلينا نحسب يومكِ بهدوء، نحتفل بما تبقّى، ونتعلّم من الأيام التي نصرف فيها أكثر من اللازم — من دون جلد للذات.</p>
-  <div class="hero-tags">
-    <span class="tag">🧸 لمسات لطيفة</span><span class="tag">🏎️ Formula 1</span>
-    <span class="tag">🎾 Tennis</span><span class="tag">🐾 Cane Corso</span>
-    <span class="tag">🍫 Dark chocolate</span>
+ <div class="welcome glass">
+  <div class="eyebrow">A SOFTER KIND OF FINANCIAL CONTROL</div>
+  <h2>أموالكِ بأمان،<br>وحياتكِ فيها مساحة للأشياء التي تحبينها. 🤎</h2>
+  <p>دفتركِ المالي الخاص: خططي ليومكِ، سجلي كل مصروف، تابعي أهدافكِ، وامنحي نفسكِ شعورًا بالوضوح بدل القلق.</p>
+  <div class="statsline">
+   <div class="chip"><small>مدخراتكِ</small><strong id="heroSavings">9,000 دج</strong></div>
+   <div class="chip"><small>مصروفات الشهر</small><strong id="heroSpent">0 دج</strong></div>
+   <div class="chip"><small>المتبقي اليوم</small><strong id="heroLeft">630 دج</strong></div>
   </div>
-</section>
-<div id="alerts"></div>
-
-<div class="grid">
-<section class="card s8">
-  <div class="title"><h3>🌤️ ميزانية اليوم</h3><span class="pill" id="todayLabel"></span></div>
-  <div class="summary">
-    <div class="stat"><div class="label">ميزانية اليوم</div><strong id="dayBudget">650 دج</strong></div>
-    <div class="stat"><div class="label">صرفتِ اليوم</div><strong id="daySpent">20 دج</strong></div>
-    <div class="stat"><div class="label">المتبقي اليوم</div><strong class="green" id="dayRemaining">630 دج</strong></div>
+ </div>
+ <div class="payday glass">
+  <div><div class="eyebrow">PAYDAY COUNTDOWN ✦</div><h2>كم بقي للراتب؟</h2><div class="muted" id="payLabel" style="color:#e4d1bd">حددي تاريخ الراتب القادم</div>
+   <div class="countdown"><div class="count"><b id="days">—</b><small>يوم</small></div><div class="count"><b id="hours">—</b><small>ساعة</small></div><div class="count"><b id="minutes">—</b><small>دقيقة</small></div></div>
   </div>
-  <div id="dailyMessage" class="notice good">بداية طيبة! سجلّي كل مصروف مهما كان صغيرًا.</div>
-  <hr class="sep">
-  <form id="dailySetup">
-    <div class="fieldgrid">
-      <label>ميزانية اليوم (دج)<input id="dailyBudgetInput" type="number" min="0" step="1" required value="650"></label>
-      <label>تاريخ اليوم<input id="dailyDateInput" type="date" required></label>
-    </div>
-    <button class="primary" type="submit">حفظ ميزانية اليوم</button>
-  </form>
+  <div><label style="color:#ead6bc">تاريخ الراتب القادم</label><div class="actions"><input type="date" id="payDate"><button class="gold" id="savePay">حفظ</button></div></div>
+ </div>
 </section>
 
-<section class="card s4">
-  <div class="title"><h3>💰 مدخراتكِ الحالية</h3><span class="pill">رأس مالكِ</span></div>
-  <div class="big brown" id="savingsDisplay">9,000 دج</div>
-  <p class="muted">المدخرات منفصلة عن ميزانية اليوم. المصروف اليومي لا يُخصم منها تلقائيًا، حتى لا نحسب المال مرتين.</p>
-  <form id="savingsForm">
-    <label>تحديث المدخرات الحالية (دج)<input id="savingsInput" type="number" min="0" step="1" value="9000" required></label>
-    <button class="secondary" type="submit">تحديث المدخرات</button>
-  </form>
-  <div class="notice">قاعدة Velora: المدخرات ليست ميزانية يومية — لا تلمسيها إلا لسبب مقصود.</div>
+<section class="panel">
+ <div class="heading"><div><h2>لوحة اليوم ✨</h2><p>اختاري التاريخ لتعديل الميزانية ومراجعة ما صرفتِه في ذلك اليوم.</p></div><div style="min-width:190px"><label>التاريخ المختار</label><input type="date" id="selectedDate"></div></div>
+ <div id="notice" class="notice"></div>
+ <div class="grid">
+  <div class="metric"><span class="symbol">🪙</span><small>ميزانية اليوم</small><strong id="budgetVal">650 دج</strong><div class="progress"><span id="budgetBar"></span></div></div>
+  <div class="metric"><span class="symbol">🧾</span><small>ما صرفتِه</small><strong id="spentVal">20 دج</strong><small id="spentPercent">3% من الميزانية</small></div>
+  <div class="metric"><span class="symbol">🌿</span><small>المتبقي اليوم</small><strong id="leftVal">630 دج</strong><small id="leftNote">لديكِ مجال للتنفس</small></div>
+  <div class="metric"><span class="symbol">📒</span><small>عدد المصروفات</small><strong id="countVal">1</strong><small>عملية مسجلة لهذا اليوم</small></div>
+ </div>
 </section>
 
-<section class="card s6">
-  <div class="title"><h3>🧾 ماذا صرفتِ اليوم؟</h3><span class="pill">كل مصروف يُسجّل</span></div>
+<div class="two">
+ <section class="panel">
+  <div class="heading"><div><h2>تفاصيل اليوم</h2><p>ميزانية مختلفة لكل تاريخ، مع ملاحظة خاصة بكِ.</p></div></div>
+  <div class="fields">
+   <div><label>التاريخ</label><input type="date" id="budgetDate"></div>
+   <div><label>ميزانية اليوم (دج)</label><input type="number" min="0" id="dailyBudget" value="650"></div>
+   <div><label>المدخرات الحالية (دج)</label><input type="number" min="0" id="savingsToday" value="9000"></div>
+   <div><label>خطة اليوم</label><select id="mood"><option>أصرف بوعي</option><option>يوم اقتصادي</option><option>جامعة وتنقل</option><option>يوم مرن</option><option>مناسبة خاصة</option></select></div>
+   <div class="wide"><label>ملاحظة اليوم</label><textarea id="dayNote" rows="2" placeholder="مثلاً: أريد الاحتفاظ بمبلغ للتنقل غدًا..."></textarea></div>
+  </div>
+  <div class="actions"><button class="primary" id="saveBudget">حفظ تفاصيل اليوم</button><button id="copyYesterday">نسخ ميزانية أمس</button></div>
+ </section>
+
+ <section class="panel">
+  <div class="heading"><div><h2 id="formTitle">إضافة مصروف جديد</h2><p>كل عملية مرتبطة بتاريخها ويمكن تعديلها أو حذفها.</p></div><span>🧸</span></div>
   <form id="expenseForm">
-    <div class="fieldgrid">
-      <label>نوع المصروف
-        <select id="expenseCategory">
-          <option value="bus">🚌 باص</option><option value="taxi">🚕 تاكسي</option>
-          <option value="meal">🥗 وجبة</option><option value="emergency">🩹 طوارئ</option>
-          <option value="university">📚 الجامعة</option><option value="coffee">☕ مشروب / قهوة</option>
-          <option value="personal">🛍️ شخصي</option><option value="other">✦ أخرى</option>
-        </select>
-      </label>
-      <label>المبلغ بالدينار<input id="expenseAmount" type="number" min="1" step="1" required placeholder="مثال: 20"></label>
-      <label class="full">تفاصيل (اختياري)<input id="expenseNote" maxlength="100" placeholder="مثال: باص الذهاب إلى الجامعة"></label>
-    </div>
-    <button class="primary" type="submit">+ سجّلي المصروف</button>
+   <div class="fields">
+    <div><label>تاريخ المصروف</label><input type="date" id="expenseDate" required></div>
+    <div><label>المبلغ (دج)</label><input type="number" id="amount" min="1" step="1" placeholder="مثلاً 100" required></div>
+    <div><label>الفئة</label><select id="category">
+     <option>باص</option><option>تاكسي</option><option>وجبة</option><option>طوارئ</option><option>جامعة</option><option>قهوة وحلوى</option><option>عناية وجمال</option><option>ملابس</option><option>ترفيه</option><option>مشتريات</option><option>فواتير</option><option>أخرى</option>
+    </select></div>
+    <div><label>الوقت</label><input type="time" id="time"></div>
+    <div class="wide"><label>تفاصيل المصروف</label><input id="note" placeholder="مثلاً: باص الجامعة ذهابًا"></div>
+   </div>
+   <div class="actions"><button class="primary" id="submitExpense">＋ تسجيل المصروف</button><button type="button" id="cancelEdit" hidden>إلغاء التعديل</button></div>
   </form>
-  <div class="notice">لو ركبتِ تاكسي، اختاري «تاكسي» واكتبي المبلغ الفعلي. سنحسبه ضمن التنقل وننبهكِ إذا استهلك جزءًا كبيرًا من ميزانية اليوم.</div>
-</section>
-
-<section class="card s6">
-  <div class="title"><h3>📒 سجل اليوم</h3><span class="pill" id="expenseCount">0 حركات</span></div>
-  <div id="dailyExpenseList"></div>
-  <hr class="sep">
-  <div class="summary">
-    <div class="stat"><div class="label">إجمالي التنقل</div><strong id="transportTotal">0 دج</strong></div>
-    <div class="stat"><div class="label">الوجبات</div><strong id="mealTotal">0 دج</strong></div>
-    <div class="stat"><div class="label">الطوارئ</div><strong id="emergencyTotal">0 دج</strong></div>
-  </div>
-</section>
-
-<section class="card s7">
-  <div class="title"><h3>📊 أين تذهب ميزانية الشهر؟</h3><span class="pill">نسب مئوية</span></div>
-  <p class="muted">تظهر النسب حسب المصروفات التي تسجلينها هنا. يمكنكِ تعديل سقف كل فئة، والنسب تُحسب من مجموع ميزانية الشهر.</p>
-  <form id="monthlyForm">
-    <div class="fieldgrid">
-      <label>ميزانية الشهر (دج)<input id="monthBudgetInput" type="number" min="1" value="13000" required></label>
-      <label>سقف التنقل الشهري (دج)<input id="transportLimit" type="number" min="0" value="3000" required></label>
-      <label>سقف الوجبات (دج)<input id="mealLimit" type="number" min="0" value="3000" required></label>
-      <label>سقف الطوارئ (دج)<input id="emergencyLimit" type="number" min="0" value="1500" required></label>
-    </div>
-    <button class="secondary" type="submit">حفظ حدود الشهر</button>
-  </form>
-  <hr class="sep"><div id="monthlyStats"></div>
-</section>
-
-<section class="card s5">
-  <div class="title"><h3>🛍️ قائمة مشترياتي وأحلامي</h3><span class="pill">حسب الأولوية</span></div>
-  <form id="purchaseForm">
-    <label>الشيء الذي تريدين شراءه<input id="purchaseName" maxlength="80" required placeholder="مثال: حاسوب جديد"></label>
-    <div class="fieldgrid">
-      <label>الميزانية المتوقعة (دج)<input id="purchaseCost" type="number" min="0" step="1" placeholder="اختياري"></label>
-      <label>الأولوية<select id="purchasePriority">
-        <option value="high">ضروري / أولوية عالية</option>
-        <option value="medium" selected>متوسط</option>
-        <option value="low">رغبة / لاحقًا</option>
-      </select></label>
-    </div>
-    <button class="primary" type="submit">إضافة إلى القائمة</button>
-  </form>
-  <div id="purchaseList"></div>
-</section>
-
-<section class="card s12">
-  <div class="title"><h3>🎀 عالمكِ الخاص</h3><span class="pill">أشياء تفرحكِ وتلهمكِ</span></div>
-  <div class="hobbygrid">
-    <div class="hobby"><span>💻</span>حاسوب جديد<small>استثمار في مستقبلكِ</small></div>
-    <div class="hobby"><span>💊</span>فيتامينات<small>ضمن ميزانية الصحة</small></div>
-    <div class="hobby"><span>🧯</span>حساب طوارئ<small>أمان قبل الكماليات</small></div>
-    <div class="hobby"><span>💄</span>مكياج<small>ميزانية شخصية</small></div>
-    <div class="hobby"><span>🧴</span>Skin care<small>العناية بنفسكِ</small></div>
-    <div class="hobby"><span>👗</span>ملابس يومية<small>اختيارات مدروسة</small></div>
-    <div class="hobby"><span>🎁</span>ملابس العيد<small>خطة مبكرة</small></div>
-    <div class="hobby"><span>✨</span>إكسسوارات<small>لمسات صغيرة</small></div>
-    <div class="hobby"><span>🌷</span>عطور<small>شيء تحبينه</small></div>
-    <div class="hobby"><span>👜</span>حقائب<small>شراء دون استعجال</small></div>
-    <div class="hobby"><span>🍽️</span>تجربة مطاعم<small>متعة ضمن سقف محدد</small></div>
-    <div class="hobby"><span>📚</span>أشياء الجامعة<small>دراستكِ أولًا</small></div>
-    <div class="hobby"><span>🧸</span>بيجامات<small>راحة البيت</small></div>
-    <div class="hobby"><span>🧣</span>مستلزمات الشتاء<small>الدفء مهم</small></div>
-    <div class="hobby"><span>🧥</span>معاطف<small>قطعة عملية</small></div>
-    <div class="hobby"><span>🏎️</span>Formula 1<small>سرعة وحماس</small></div>
-    <div class="hobby"><span>🎾</span>التنس<small>حركة ومتعة</small></div>
-    <div class="hobby"><span>🐕</span>Cane Corso<small>حب الكلاب</small></div>
-    <div class="hobby"><span>🐭</span>ميني ماوس<small>كيوت كلاسيكي</small></div>
-    <div class="hobby"><span>🧸</span>الدببة اللطيفة<small>راحة صغيرة</small></div>
-    <div class="hobby"><span>🍫</span>شوكولاتة داكنة<small>متعة واعية</small></div>
-    <div class="hobby"><span>🤎</span>ألوان بنية<small>دفء وأناقة</small></div>
-  </div>
-</section>
-
-<section class="card s6">
-  <div class="title"><h3>🌱 خطة ادخار الطوارئ</h3></div>
-  <p class="muted">يمكنكِ تحديد هدف لحساب الطوارئ. هذا الهدف لا يسحب المال تلقائيًا من المدخرات، بل يساعدكِ على متابعة التقدم.</p>
-  <form id="emergencyGoalForm">
-    <label>هدف حساب الطوارئ (دج)<input id="emergencyGoalInput" type="number" min="0" step="100" value="30000" required></label>
-    <button class="secondary" type="submit">حفظ الهدف</button>
-  </form>
-  <div id="emergencyProgress"></div>
-</section>
-
-<section class="card s6">
-  <div class="title"><h3>🕯️ قاعدة 24 ساعة</h3></div>
-  <p class="muted">قبل شراء شيء غير ضروري، ضعيه في قائمة المشتريات وانتظري 24 ساعة. بعدها اسألي نفسكِ:</p>
-  <div class="notice">هل أحتاجه فعلًا؟ هل عندي ميزانية له؟ هل سيؤخر الحاسوب أو الطوارئ؟ هل سأظل أريده غدًا؟</div>
-  <p class="muted">الهدف ليس حرمانكِ من الأشياء الجميلة؛ الهدف أن تشتريها وأنتِ مرتاحة، لا تحت ضغط اللحظة.</p>
-</section>
-
-<section class="card s12">
-  <div class="title"><h3>🔐 بياناتكِ والنسخة الاحتياطية</h3></div>
-  <div class="notice">هذا الموقع يحفظ البيانات محليًا في المتصفح، ولا يرسلها إلى بنك أو خادم. احفظي نسخة احتياطية بانتظام، خصوصًا قبل تغيير الجهاز أو مسح بيانات المتصفح.</div>
-  <div class="btnrow">
-    <button class="secondary" id="exportBtn" type="button">تنزيل نسخة احتياطية</button>
-    <button class="secondary" id="importBtn" type="button">استيراد نسخة</button>
-    <input id="importFile" type="file" accept="application/json,.json" hidden>
-    <button class="danger" id="resetBtn" type="button">إعادة ضبط الموقع</button>
-  </div>
-</section>
+ </section>
 </div>
-</main>
 
-<footer>VELORA · YOUR LITTLE WORLD, YOUR BIG DREAMS<br>بهدوء، خطوة بخطوة، كل دينار له مكانه. 🤎</footer>
-<div id="toast" role="status" aria-live="polite"></div>
+<section class="panel">
+ <div class="heading"><div><h2>أرشيف الأيام 📅</h2><p>كل يوم يظهر باسمه وتاريخه وإجمالي ما صرفتِه فيه.</p></div><div><label>اختاري الشهر</label><input type="month" id="historyMonth"></div></div>
+ <div class="daylayout">
+  <div class="daycard"><div class="eyebrow" style="color:#e4c58f">DAY IN REVIEW</div><h3 id="summaryDate">—</h3><p id="summaryNote">كل يوم فرصة جديدة للتوازن.</p><div style="display:flex;justify-content:space-between"><span>المصروف</span><b id="summarySpent">0 دج</b></div><div class="progress"><span id="summaryBar"></span></div><div style="display:flex;justify-content:space-between;margin-top:10px"><span>المتبقي</span><b id="summaryLeft">650 دج</b></div></div>
+  <div class="daylist" id="dayList"></div>
+ </div>
+ <div class="heading" style="margin-top:20px"><div><h2 id="tableTitle">مصروفات اليوم المحدد</h2><p id="tableSub">كل عملية محفوظة بتاريخها.</p></div></div>
+ <div class="tablewrap"><table><thead><tr><th>الوقت</th><th>الفئة</th><th>التفاصيل</th><th>المبلغ</th><th>إجراءات</th></tr></thead><tbody id="expenseRows"></tbody></table></div>
+</section>
+
+<section class="panel">
+ <div class="heading"><div><h2>التتبّع الشهري بالنسب المئوية 📊</h2><p>اعرفي أين تذهب أموالكِ، وما هي الفئات الأكثر استهلاكًا للميزانية.</p></div><div><label>شهر الإحصائيات</label><input type="month" id="statsMonth"></div></div>
+ <div class="grid" style="margin-bottom:20px">
+  <div class="metric"><small>إجمالي مصروفات الشهر</small><strong id="monthTotal">0 دج</strong><small id="daysLogged">0 يوم مسجل</small></div>
+  <div class="metric"><small>متوسط مصروف اليوم</small><strong id="average">0 دج</strong><small>للأيام التي فيها مصروفات</small></div>
+  <div class="metric"><small>أعلى يوم إنفاقًا</small><strong id="highest">—</strong><small id="highestDate">لا توجد بيانات</small></div>
+  <div class="metric"><small>الميزانية الشهرية</small><strong id="monthBudget">13,000 دج</strong><small id="monthRemaining">المتبقي</small></div>
+ </div>
+ <div class="two">
+  <div><h3 style="font-size:15px">نسبة كل فئة من المصروفات</h3><div id="categoryBars"></div></div>
+  <div><h3 style="font-size:15px">ملخص الأيام</h3><div class="tablewrap"><table style="min-width:260px"><thead><tr><th>اليوم</th><th>المصروف</th><th>من الميزانية</th></tr></thead><tbody id="monthRows"></tbody></table></div></div>
+ </div>
+ <div class="fields" style="margin-top:20px">
+  <div><label>الميزانية الشهرية (دج)</label><input type="number" min="0" id="monthlyBudget" value="13000"></div>
+  <div><label>التنبيه عند صرف</label><select id="threshold"><option value="70">70% من ميزانية اليوم</option><option value="80">80% من ميزانية اليوم</option><option value="90">90% من ميزانية اليوم</option></select></div>
+  <div><label>تذكير الصباح</label><input type="time" id="morning" value="08:00"></div>
+  <div><label>مراجعة المساء</label><input type="time" id="evening" value="20:30"></div>
+ </div>
+ <div class="actions"><button class="primary" id="saveSettings">حفظ إعدادات التتبع</button></div>
+</section>
+
+<section class="panel">
+ <div class="heading"><div><h2>أهدافكِ ومشترياتكِ 🎀</h2><p>عدّلي التكلفة والادخار لكل هدف، أو أضيفي هدفًا جديدًا.</p></div><button class="gold" id="addGoal">＋ إضافة هدف</button></div>
+ <div class="goals" id="goals"></div>
+</section>
+
+<section class="panel">
+ <div class="heading"><div><h2>المدخرات وصندوق الطوارئ 🏦</h2><p>راقبي رصيدكِ وامنحي صندوق الطوارئ هدفًا واضحًا.</p></div></div>
+ <div class="fields">
+  <div><label>إجمالي المدخرات (دج)</label><input type="number" min="0" id="savings"></div>
+  <div><label>الموجود في صندوق الطوارئ (دج)</label><input type="number" min="0" id="emergency"></div>
+  <div><label>هدف صندوق الطوارئ (دج)</label><input type="number" min="0" id="emergencyGoal"></div>
+  <div><label>اكتمال صندوق الطوارئ</label><strong id="emergencyPct">0%</strong><div class="progress"><span id="emergencyBar"></span></div></div>
+ </div>
+ <div class="actions"><button class="primary" id="saveSavings">حفظ المدخرات</button><button class="danger" id="reset">إعادة ضبط كل البيانات</button></div>
+ <p class="muted">تُحفظ بياناتكِ في المتصفح على هذا الجهاز. صدّري نسخة احتياطية دوريًا حتى لا تفقدي سجلكِ عند مسح بيانات المتصفح.</p>
+</section>
+<footer>VELORA · IN YOUR OWN TIME, IN YOUR OWN WAY · 🤎</footer>
+</div>
+<div class="toastbox" id="toasts" aria-live="polite"></div>
 
 <script>
-'use strict';
-const KEY='velora_daily_world_v2';
-const categories={
-  bus:'🚌 باص',taxi:'🚕 تاكسي',meal:'🥗 وجبة',
-  emergency:'🩹 طوارئ',university:'📚 الجامعة',
-  coffee:'☕ مشروب / قهوة',personal:'🛍️ شخصي',other:'✦ أخرى'
-};
-function today(){
-  const d=new Date();
-  return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
+(()=>{
+"use strict";
+const KEY="velora_money_journal_v3", $=id=>document.getElementById(id);
+const today=()=>{let d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
+const monthNow=()=>today().slice(0,7);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const num=v=>Math.max(0,Number(v)||0);
+const money=n=>`${Math.round(Number(n)||0).toLocaleString("en-US")} دج`;
+const dt=s=>{let [y,m,d]=(s||today()).split("-").map(Number);return new Date(y,m-1,d,12)};
+const longDate=s=>dt(s).toLocaleDateString("ar-DZ",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+const shortDate=s=>dt(s).toLocaleDateString("ar-DZ",{weekday:"short",day:"2-digit",month:"short"});
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const defaults=()=>({savings:9000,emergency:0,emergencyGoal:50000,monthlyBudget:13000,payDate:"",budgets:{},details:{},expenses:[],goals:[
+["حاسوب جديد","💻",70000],["فيتامينات وعناية بالصحة","🌿",5000],["صندوق الطوارئ","🏦",50000],["مكياج","💄",10000],["سكين كير","🧴",8000],["ملابس يومية","👗",12000],["ملابس العيد","🎀",15000],["إكسسوارات","✨",6000],["عطور","🌸",12000],["حقائب","👜",15000],["تجربة مطاعم","🍰",5000],["أشياء الجامعة","📚",7000],["بيجامات","🧸",5000],["مستلزمات الشتاء","❄️",10000],["معاطف","🧥",18000]
+].map(x=>({id:uid(),name:x[0],emoji:x[1],cost:x[2],saved:0})),settings:{threshold:70,morning:"08:00",evening:"20:30",alerts:{},reminders:{},notify:false}});
+let state;
+try{const saved=JSON.parse(localStorage.getItem(KEY)||"null");state=saved?{...defaults(),...saved}:defaults()}catch{state=defaults()}
+state.budgets||={};state.details||={};state.expenses||=[];state.goals||=[];state.settings={...defaults().settings,...(state.settings||{})};
+let selected=today(),editing=null;
+const save=()=>localStorage.setItem(KEY,JSON.stringify(state));
+const expensesFor=d=>state.expenses.filter(e=>e.date===d);
+const sum=arr=>arr.reduce((n,e)=>n+num(e.amount),0);
+const budgetFor=d=>state.budgets[d]===undefined?650:num(state.budgets[d]);
+function toast(message,type=""){let el=document.createElement("div");el.className="toast";el.textContent=message;$("toasts").prepend(el);setTimeout(()=>el.remove(),4500)}
+function alertUser(title,message,tag){toast(title+" — "+message);if(state.settings.notify&&"Notification"in window&&Notification.permission==="granted"){try{new Notification(title,{body:message,tag})}catch{}}}
+function checkAlerts(d){let budget=budgetFor(d),spent=sum(expensesFor(d));if(!budget)return;let pct=spent/budget*100,threshold=Number(state.settings.threshold)||70;
+ [threshold,90,100].filter((v,i,a)=>a.indexOf(v)===i).sort((a,b)=>a-b).forEach(level=>{let key=d+":"+level;if(pct>=level&&!state.settings.alerts[key]){state.settings.alerts[key]=true;alertUser(level===100?"تجاوز الميزانية": "تنبيه ميزانية Velora",level===100?`تجاوزتِ الميزانية بـ ${money(spent-budget)}.`:`وصل إنفاقكِ إلى ${Math.round(pct)}% من ميزانية اليوم. بقي ${money(budget-spent)}.`,key)}});save()}
+function renderPay(){if(!$("payDate").value&&state.payDate)$("payDate").value=state.payDate;let d=state.payDate;$("payLabel").textContent=d?"موعد الراتب: "+longDate(d):"حددي تاريخ الراتب القادم";if(!d){["days","hours","minutes"].forEach(x=>$(x).textContent="—");return}let target=dt(d);target.setHours(9,0,0,0);let ms=target-Date.now();if(ms<0){["days","hours","minutes"].forEach(x=>$(x).textContent="0");return}$("days").textContent=Math.floor(ms/86400000);$("hours").textContent=Math.floor(ms%86400000/3600000);$("minutes").textContent=Math.floor(ms%3600000/60000)}
+function renderDay(){
+ let d=selected,arr=expensesFor(d),spent=sum(arr),budget=budgetFor(d),left=budget-spent,pct=budget?spent/budget*100:0,details=state.details[d]||{};
+ $("selectedDate").value=d;$("budgetDate").value=d;$("expenseDate").value=editing? $("expenseDate").value:d;
+ $("budgetVal").textContent=money(budget);$("spentVal").textContent=money(spent);$("leftVal").textContent=money(left);$("countVal").textContent=arr.length;$("spentPercent").textContent=Math.round(pct)+"% من الميزانية";$("budgetBar").style.width=Math.min(100,Math.max(0,pct))+"%";
+ $("leftNote").textContent=left<0?"تجاوزتِ الميزانية؛ أعيدي التخطيط بهدوء.":pct>=80?"بقي القليل، انتبهي للمصروفات التالية.":"لديكِ مجال للتنفس 🌿";
+ $("heroSavings").textContent=money(state.savings);$("heroLeft").textContent=money(left);
+ $("dailyBudget").value=budget;$("savingsToday").value=state.savings;$("mood").value=details.mood||"أصرف بوعي";$("dayNote").value=details.note||"";
+ let n=$("notice");n.className="notice show "+(left<0?"bad":pct>=(Number(state.settings.threshold)||70)?"warn":"ok");n.textContent=left<0?`تجاوزتِ الميزانية بـ ${money(-left)}. لا تلومي نفسكِ؛ راجعي ما تبقى من اليوم.`:pct>=(Number(state.settings.threshold)||70)?`تنبيه لطيف: استخدمتِ ${Math.round(pct)}% من الميزانية. المتبقي ${money(left)}.`:spent?`أحسنتِ في المتابعة! صرفتِ ${money(spent)} والمتبقي ${money(left)}.`:"يوم جديد وصفحة جديدة. سجلي ميزانيتكِ ومصروفاتكِ هنا.";
+ $("summaryDate").textContent=longDate(d);$("summaryNote").textContent=(details.mood||"أصرف بوعي")+" · "+(details.note||"كل يوم خطوة جديدة نحو التوازن.");$("summarySpent").textContent=money(spent);$("summaryLeft").textContent=money(left);$("summaryBar").style.width=Math.min(100,Math.max(0,pct))+"%";
+ $("tableTitle").textContent="مصروفات "+longDate(d);$("tableSub").textContent=arr.length+" عملية · الإجمالي "+money(spent);
+ $("expenseRows").innerHTML=arr.length?arr.slice().sort((a,b)=>(a.time||"").localeCompare(b.time||"")).map(e=>`<tr><td>${esc(e.time||"—")}</td><td><span class="pill">${esc(e.category)}</span></td><td>${esc(e.note||"بدون تفاصيل")}</td><td><b>${money(e.amount)}</b></td><td><button class="rowbtn" data-edit="${e.id}">تعديل</button><button class="rowbtn danger" data-del="${e.id}">حذف</button></td></tr>`).join(""):`<tr><td colspan="5" class="empty">لا توجد مصروفات في هذا اليوم بعد 🤎</td></tr>`;
+ $("expenseRows").querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editExpense(b.dataset.edit));$("expenseRows").querySelectorAll("[data-del]").forEach(b=>deleteExpense(b.dataset.del));
+ renderDays();checkAlerts(d)
 }
-function id(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36)}
-const defaultState={
-  savings:9000,dayBudget:650,dayDate:today(),
-  expenses:[{id:id(),category:'bus',amount:20,note:'باص',date:today()}],
-  purchases:[
-    {id:id(),name:'حاسوب جديد',cost:0,priority:'high',done:false},
-    {id:id(),name:'فيتامينات',cost:0,priority:'high',done:false},
-    {id:id(),name:'حساب طوارئ',cost:0,priority:'high',done:false},
-    {id:id(),name:'مكياج',cost:0,priority:'low',done:false},
-    {id:id(),name:'Skin care',cost:0,priority:'medium',done:false},
-    {id:id(),name:'ملابس يومية',cost:0,priority:'medium',done:false},
-    {id:id(),name:'ملابس العيد',cost:0,priority:'medium',done:false},
-    {id:id(),name:'إكسسوارات',cost:0,priority:'low',done:false},
-    {id:id(),name:'عطور',cost:0,priority:'low',done:false},
-    {id:id(),name:'حقائب',cost:0,priority:'low',done:false},
-    {id:id(),name:'تجربة مطاعم',cost:0,priority:'low',done:false},
-    {id:id(),name:'أشياء الجامعة',cost:0,priority:'high',done:false},
-    {id:id(),name:'بيجامات',cost:0,priority:'medium',done:false},
-    {id:id(),name:'مستلزمات الشتاء',cost:0,priority:'high',done:false},
-    {id:id(),name:'معاطف',cost:0,priority:'high',done:false}
-  ],
-  monthBudget:13000,
-  limits:{busTaxi:3000,meal:3000,emergency:1500},
-  emergencyGoal:30000
-};
-function cloneDefaults(){
-  return JSON.parse(JSON.stringify(defaultState));
+function renderDays(){
+ let m=$("historyMonth").value||selected.slice(0,7),dates=new Set([...Object.keys(state.budgets),...Object.keys(state.details),...state.expenses.map(e=>e.date)]);
+ let list=[...dates].filter(d=>d.startsWith(m)).sort((a,b)=>b.localeCompare(a));
+ $("dayList").innerHTML=list.length?list.map(d=>`<button class="dayitem ${d===selected?"active":""}" data-day="${d}"><span><strong>${esc(longDate(d))}</strong><small>${expensesFor(d).length} عملية · الميزانية ${money(budgetFor(d))}</small></span><b>${money(sum(expensesFor(d)))}</b></button>`).join(""):'<div class="empty">سيظهر سجل الأيام هنا بعد إضافة ميزانية أو مصروف.</div>';
+ $("dayList").querySelectorAll("[data-day]").forEach(b=>b.onclick=()=>{selected=b.dataset.day;editing=null;resetForm();renderAll()})
 }
-function load(){
-  try{
-    const v=JSON.parse(localStorage.getItem(KEY));
-    if(v&&typeof v==='object'){
-      return {
-        ...cloneDefaults(),...v,
-        limits:{...defaultState.limits,...(v.limits||{})},
-        expenses:Array.isArray(v.expenses)?v.expenses:[],
-        purchases:Array.isArray(v.purchases)?v.purchases:[]
-      };
-    }
-  }catch(e){}
-  return cloneDefaults();
-}
-let state=load(),toastTimer;
-function save(){
-  try{localStorage.setItem(KEY,JSON.stringify(state))}
-  catch(e){toast('لم أستطع حفظ البيانات؛ نزّلي نسخة احتياطية.')}
-}
-function fmt(n){
-  return (Number(n)||0).toLocaleString('fr-FR',{maximumFractionDigits:0})+' دج';
-}
-function esc(s){
-  return String(s??'').replace(/[&<>"']/g,c=>({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
-}
-function toast(s){
-  const e=document.getElementById('toast');
-  e.textContent=s;e.style.display='block';
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>e.style.display='none',3000);
-}
-function todayExpenses(){return state.expenses.filter(x=>x.date===state.dayDate)}
-function total(arr){return arr.reduce((s,x)=>s+Number(x.amount||0),0)}
-
-function render(){
-  document.getElementById('headerDate').textContent=
-    new Date(state.dayDate+'T12:00:00').toLocaleDateString('ar-DZ',{
-      weekday:'long',year:'numeric',month:'long',day:'numeric'
-    });
-  document.getElementById('todayLabel').textContent=state.dayDate;
-  document.getElementById('dayBudget').textContent=fmt(state.dayBudget);
-  document.getElementById('dailyBudgetInput').value=state.dayBudget;
-  document.getElementById('dailyDateInput').value=state.dayDate;
-  document.getElementById('daySpent').textContent=fmt(total(todayExpenses()));
-  const remaining=Number(state.dayBudget)-total(todayExpenses());
-  document.getElementById('dayRemaining').textContent=fmt(remaining);
-  document.getElementById('dayRemaining').className=remaining<0?'red':'green';
-  document.getElementById('savingsDisplay').textContent=fmt(state.savings);
-  document.getElementById('savingsInput').value=state.savings;
-  renderExpenses();renderMonthly();renderPurchases();renderEmergency();renderAlerts();
-}
-
-function renderExpenses(){
-  const arr=todayExpenses().slice().sort((a,b)=>(b.created||0)-(a.created||0));
-  document.getElementById('expenseCount').textContent=arr.length+' حركات';
-  document.getElementById('dailyExpenseList').innerHTML=arr.length?arr.map(x=>`
-    <div class="expense-item">
-      <div><div class="item-name">${esc(categories[x.category]||x.category)}</div>
-      <div class="item-sub">${esc(x.note||'مصروف يومي')} · ${esc(x.date)}</div></div>
-      <div class="btnrow" style="align-items:center">
-        <b class="amount">${fmt(x.amount)}</b>
-        <button class="danger mini" data-del-expense="${esc(x.id)}">حذف</button>
-      </div>
-    </div>`).join(''):'<div class="empty">لا توجد مصروفات لهذا اليوم بعد. سجّليها أولًا بأول 🌷</div>';
-
-  const sumCat=key=>total(arr.filter(x=>
-    key==='transport'?['bus','taxi'].includes(x.category):x.category===key
-  ));
-  document.getElementById('transportTotal').textContent=fmt(sumCat('transport'));
-  document.getElementById('mealTotal').textContent=fmt(sumCat('meal'));
-  document.getElementById('emergencyTotal').textContent=fmt(sumCat('emergency'));
-
-  const spent=total(arr),left=state.dayBudget-spent;
-  let msg='بداية طيبة! سجلّي كل مصروف مهما كان صغيرًا.',cls='notice good';
-  if(left<0){
-    msg=`صرفكِ تجاوز ميزانية اليوم بـ ${fmt(Math.abs(left))}. لا تلومي نفسكِ؛ أوقفي الكماليات لبقية اليوم، سجّلي ما حدث، وحاولي معرفة المصروف الذي لم يكن مخططًا.`;
-    cls='notice warn';
-  }else if(state.dayBudget>0&&left<=state.dayBudget*.15){
-    msg=`بقي ${fmt(left)} فقط. خذي نفسًا قبل أي شراء، واجعلي الباقي للتنقل أو الحاجة الضرورية.`;
-    cls='notice warn';
-  }else if(state.dayBudget>0&&left>=state.dayBudget*.6&&spent>0){
-    msg=`أحسنتِ! بقي ${fmt(left)} من ميزانيتكِ. هذا تقدّم جميل؛ لا تحتاجين إلى إنفاق الباقي لمجرد أنه موجود. 🤎`;
-    cls='notice good';
-  }else if(spent>0){
-    msg=`أنتِ تتابعين مالكِ بوعي. بقي ${fmt(left)}؛ تأكدي أن مصروفاتكِ الأساسية لبقية اليوم مغطاة.`;
-    cls='notice';
-  }
-  const dm=document.getElementById('dailyMessage');
-  dm.className=cls;dm.textContent=msg;
-}
-
 function renderMonthly(){
-  const month=state.dayDate.slice(0,7);
-  const arr=state.expenses.filter(x=>x.date?.startsWith(month));
-  const spent=total(arr);
-  const transport=total(arr.filter(x=>['bus','taxi'].includes(x.category)));
-  const meal=total(arr.filter(x=>x.category==='meal'));
-  const emergency=total(arr.filter(x=>x.category==='emergency'));
-  const other=Math.max(0,spent-transport-meal-emergency);
-
-  document.getElementById('monthBudgetInput').value=state.monthBudget;
-  document.getElementById('transportLimit').value=state.limits.busTaxi;
-  document.getElementById('mealLimit').value=state.limits.meal;
-  document.getElementById('emergencyLimit').value=state.limits.emergency;
-
-  const rows=[['التنقل',transport],['الوجبات',meal],['الطوارئ',emergency],['بقية المصروفات',other]];
-  document.getElementById('monthlyStats').innerHTML=`
-    <div class="summary">
-      <div class="stat"><div class="label">مصروفات الشهر</div><strong>${fmt(spent)}</strong></div>
-      <div class="stat"><div class="label">المتبقي من خطة الشهر</div>
-        <strong class="${state.monthBudget-spent<0?'red':'green'}">${fmt(state.monthBudget-spent)}</strong></div>
-      <div class="stat"><div class="label">من الميزانية صُرف</div>
-        <strong>${state.monthBudget?Math.round(spent/state.monthBudget*100):0}%</strong></div>
-    </div>`+rows.map(([name,val])=>{
-      const pct=spent?Math.round(val/spent*100):0;
-      return `<div class="monthlyrow"><span>${name}</span><div class="monthbar">
-        <span style="width:${pct}%"></span></div><b>${pct}% · ${fmt(val)}</b></div>`;
-    }).join('')+`<div class="muted">النسب هنا من إجمالي مصروفات الشهر، وليست تقييمًا لكِ. ميزانية الشهر الحالية ${fmt(state.monthBudget)}.</div>`;
+ let m=$("statsMonth").value||monthNow(),arr=state.expenses.filter(e=>e.date.startsWith(m)),total=sum(arr),days=[...new Set(arr.map(e=>e.date))],byDay={};
+ arr.forEach(e=>byDay[e.date]=(byDay[e.date]||0)+num(e.amount));
+ let ranked=Object.entries(byDay).sort((a,b)=>b[1]-a[1]);
+ $("monthTotal").textContent=money(total);$("heroSpent").textContent=money(sum(state.expenses.filter(e=>e.date.startsWith(monthNow()))));$("daysLogged").textContent=days.length+" يوم فيه مصروفات";$("average").textContent=money(days.length?total/days.length:0);
+ $("highest").textContent=ranked.length?money(ranked[0][1]):"—";$("highestDate").textContent=ranked.length?longDate(ranked[0][0]):"لا توجد بيانات بعد";
+ $("monthBudget").textContent=money(state.monthlyBudget);$("monthlyBudget").value=state.monthlyBudget;$("monthRemaining").textContent=total>state.monthlyBudget?"تجاوزتِ الميزانية بـ "+money(total-state.monthlyBudget):"المتبقي: "+money(state.monthlyBudget-total);
+ let cats={};arr.forEach(e=>cats[e.category]=(cats[e.category]||0)+num(e.amount));let sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+ $("categoryBars").innerHTML=sorted.length?sorted.map(([cat,v])=>{let p=total?v/total*100:0;return `<div class="barrow"><span>${esc(cat)}</span><div class="bar"><span style="width:${p}%"></span></div><b>${p.toFixed(1)}%<br><small>${money(v)}</small></b></div>`}).join(""):'<div class="empty">ستظهر النسب بعد تسجيل المصروفات.</div>';
+ $("monthRows").innerHTML=ranked.length?ranked.sort((a,b)=>b[0].localeCompare(a[0])).map(([d,v])=>`<tr><td>${esc(shortDate(d))}</td><td>${money(v)}</td><td>${budgetFor(d)?Math.round(v/budgetFor(d)*100):0}%</td></tr>`).join(""):'<tr><td colspan="3" class="empty">لا توجد بيانات لهذا الشهر.</td></tr>'
 }
-
-function renderPurchases(){
-  const arr=state.purchases;
-  document.getElementById('purchaseList').innerHTML=arr.length?arr.map(p=>`
-    <div class="purchase-item">
-      <div style="display:flex;gap:9px;align-items:flex-start;min-width:0">
-        <input aria-label="تم الشراء" type="checkbox" data-purchase-done="${esc(p.id)}"
-          ${p.done?'checked':''} style="width:17px;margin:2px 0 0;flex-shrink:0">
-        <div><div class="item-name" style="${p.done?'text-decoration:line-through;color:var(--muted)':''}">${esc(p.name)}</div>
-          <div class="item-sub">${p.cost?fmt(p.cost):'لم تحددي سعرًا بعد'} · ${
-            p.priority==='high'?'أولوية عالية':p.priority==='medium'?'أولوية متوسطة':'يمكن الانتظار'
-          }</div></div>
-      </div>
-      <button class="danger mini" data-del-purchase="${esc(p.id)}">حذف</button>
-    </div>`).join(''):'<div class="empty">قائمتكِ فارغة.</div>';
+function renderGoals(){
+ $("goals").innerHTML=state.goals.map(g=>{let p=g.cost?Math.min(100,g.saved/g.cost*100):0;return `<article class="goal"><div class="goalhead"><span class="emoji">${esc(g.emoji)}</span><div style="flex:1"><h3>${esc(g.name)}</h3><small>${money(g.cost)} الهدف</small></div><button class="rowbtn" data-gdel="${g.id}">×</button></div><div class="progress"><span style="width:${p}%"></span></div><div class="goalmeta">الادخار ${money(g.saved)} · ${Math.round(p)}%</div><label>التكلفة (دج)</label><input type="number" min="0" data-cost="${g.id}" value="${g.cost}"><label>ما ادخرتِه (دج)</label><input type="number" min="0" data-saved="${g.id}" value="${g.saved}"><button style="width:100%;margin-top:9px" data-gsave="${g.id}">حفظ الهدف</button></article>`}).join("");
+ $("goals").querySelectorAll("[data-gsave]").forEach(b=>b.onclick=()=>{let g=state.goals.find(x=>x.id===b.dataset.gsave);g.cost=num($("goals").querySelector(`[data-cost="${g.id}"]`).value);g.saved=num($("goals").querySelector(`[data-saved="${g.id}"]`).value);save();renderGoals();toast("تم حفظ الهدف 🌷")});
+ $("goals").querySelectorAll("[data-gdel]").forEach(b=>b.onclick=()=>{if(confirm("حذف هذا الهدف؟")){state.goals=state.goals.filter(g=>g.id!==b.dataset.gdel);save();renderGoals()}})
 }
-
-function renderEmergency(){
-  const goal=Number(state.emergencyGoal)||0;
-  const pct=goal?Math.min(100,Math.round(state.savings/goal*100)):0;
-  document.getElementById('emergencyGoalInput').value=goal;
-  document.getElementById('emergencyProgress').innerHTML=`
-    <div class="budgethead"><span>مدخراتكِ الحالية</span><b>${fmt(state.savings)} / ${fmt(goal)}</b></div>
-    <div class="progress"><span style="width:${pct}%"></span></div>
-    <div class="muted">${pct}% من الهدف الإرشادي. هذا مؤشر مقارنة فقط، وليس حسابًا منفصلًا للطوارئ.</div>`;
+function renderSavings(){
+ $("savings").value=state.savings;$("emergency").value=state.emergency;$("emergencyGoal").value=state.emergencyGoal;
+ let p=state.emergencyGoal?Math.min(100,state.emergency/state.emergencyGoal*100):0;$("emergencyPct").textContent=Math.round(p)+"% · "+money(state.emergency);$("emergencyBar").style.width=p+"%"
 }
-
-function renderAlerts(){
-  const spent=total(todayExpenses()),left=state.dayBudget-spent;
-  let a=[];
-  if(left<0)a.push(`<div class="notice warn">🚦 تجاوزتِ ميزانية اليوم بمقدار ${fmt(-left)}. توقفي لحظة وراجعي الضروريات المتبقية؛ لا تعاقبي نفسكِ، بل عدّلي الخطة.</div>`);
-  if(left>=0&&state.dayBudget>0&&spent>0&&left>=state.dayBudget*.6)
-    a.push(`<div class="notice good">🌷 أحسنتِ! ما زال لديكِ ${fmt(left)}. كل ما لم تنفقيه يبقى معكِ — لا داعي للبحث عن شيء تشتريه.</div>`);
-  document.getElementById('alerts').innerHTML=a.join('');
-}
-
-document.getElementById('dailySetup').addEventListener('submit',e=>{
-  e.preventDefault();
-  const budget=Number(document.getElementById('dailyBudgetInput').value);
-  const date=document.getElementById('dailyDateInput').value;
-  if(!Number.isFinite(budget)||budget<0||!date)return toast('تحققي من الميزانية والتاريخ.');
-  state.dayBudget=budget;state.dayDate=date;save();render();toast('تم حفظ ميزانية اليوم 🤎');
-});
-
-document.getElementById('savingsForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const n=Number(document.getElementById('savingsInput').value);
-  if(!Number.isFinite(n)||n<0)return toast('أدخلي مبلغًا صحيحًا.');
-  state.savings=n;save();render();toast('تم تحديث مدخراتكِ.');
-});
-
-document.getElementById('expenseForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const amount=Number(document.getElementById('expenseAmount').value);
-  const category=document.getElementById('expenseCategory').value;
-  const note=document.getElementById('expenseNote').value.trim();
-  if(!Number.isFinite(amount)||amount<=0)return toast('أدخلي مبلغًا أكبر من الصفر.');
-  state.expenses.push({
-    id:id(),category,amount,note:note||categories[category],
-    date:state.dayDate,created:Date.now()
-  });
-  save();document.getElementById('expenseAmount').value='';
-  document.getElementById('expenseNote').value='';
-  render();toast('تم تسجيل المصروف وتحديث المتبقي.');
-});
-
-document.getElementById('dailyExpenseList').addEventListener('click',e=>{
-  const b=e.target.closest('[data-del-expense]');if(!b)return;
-  if(!confirm('هل تريدين حذف هذا المصروف؟'))return;
-  state.expenses=state.expenses.filter(x=>x.id!==b.dataset.delExpense);
-  save();render();toast('تم حذف المصروف وإعادة الحساب.');
-});
-
-document.getElementById('monthlyForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const month=Number(document.getElementById('monthBudgetInput').value);
-  const busTaxi=Number(document.getElementById('transportLimit').value);
-  const meal=Number(document.getElementById('mealLimit').value);
-  const emergency=Number(document.getElementById('emergencyLimit').value);
-  if([month,busTaxi,meal,emergency].some(x=>!Number.isFinite(x)||x<0)||month===0)
-    return toast('أدخلي حدودًا صحيحة.');
-  state.monthBudget=month;state.limits={busTaxi,meal,emergency};
-  save();render();toast('تم حفظ ميزانية الشهر.');
-});
-
-document.getElementById('purchaseForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const name=document.getElementById('purchaseName').value.trim();
-  const cost=Number(document.getElementById('purchaseCost').value||0);
-  const priority=document.getElementById('purchasePriority').value;
-  if(!name||cost<0||!Number.isFinite(cost))return toast('تحققي من اسم الشيء وسعره.');
-  state.purchases.push({id:id(),name,cost,priority,done:false});
-  save();e.target.reset();renderPurchases();toast('أُضيف إلى قائمة مشترياتكِ.');
-});
-
-document.getElementById('purchaseList').addEventListener('click',e=>{
-  const b=e.target.closest('[data-del-purchase]');if(!b)return;
-  state.purchases=state.purchases.filter(x=>x.id!==b.dataset.delPurchase);
-  save();renderPurchases();toast('تم حذف العنصر من القائمة.');
-});
-document.getElementById('purchaseList').addEventListener('change',e=>{
-  const c=e.target.closest('[data-purchase-done]');if(!c)return;
-  const p=state.purchases.find(x=>x.id===c.dataset.purchaseDone);
-  if(p)p.done=c.checked;
-  save();renderPurchases();toast(p?.done?'جميل! علّمي ما اشتريتِه.':'أُعيد العنصر إلى القائمة.');
-});
-
-document.getElementById('emergencyGoalForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const n=Number(document.getElementById('emergencyGoalInput').value);
-  if(!Number.isFinite(n)||n<0)return toast('أدخلي هدفًا صحيحًا.');
-  state.emergencyGoal=n;save();renderEmergency();toast('تم حفظ هدف الطوارئ.');
-});
-
-document.getElementById('exportBtn').addEventListener('click',()=>{
-  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download='velora-backup-'+today()+'.json';a.click();
-  URL.revokeObjectURL(url);toast('جهزتُ النسخة الاحتياطية.');
-});
-document.getElementById('importBtn').addEventListener('click',()=>{
-  document.getElementById('importFile').click();
-});
-document.getElementById('importFile').addEventListener('change',async e=>{
-  const f=e.target.files?.[0];if(!f)return;
-  try{
-    const v=JSON.parse(await f.text());
-    if(!v||!Array.isArray(v.expenses)||!Array.isArray(v.purchases))throw Error();
-    if(!confirm('سيستبدل هذا الملف بيانات الموقع الحالية. هل تريدين المتابعة؟'))return;
-    state={...cloneDefaults(),...v,limits:{...defaultState.limits,...(v.limits||{})}};
-    save();render();toast('تم استيراد النسخة.');
-  }catch(err){toast('تعذر قراءة الملف؛ اختاري نسخة Velora صحيحة.');}
-  finally{e.target.value='';}
-});
-document.getElementById('resetBtn').addEventListener('click',()=>{
-  if(!confirm('سيتم حذف بيانات الموقع من هذا المتصفح. هل حفظتِ نسخة احتياطية؟'))return;
-  state=cloneDefaults();save();render();toast('تمت إعادة ضبط الموقع.');
-});
-
-// عند بداية يوم جديد، نبدأ سجل اليوم بميزانية جديدة ونحتفظ بالمصاريف السابقة.
-if(state.dayDate!==today()){
-  state.dayDate=today();state.dayBudget=650;save();
-}
-document.getElementById('dailyDateInput').value=state.dayDate;
-render();
+function renderAll(){renderPay();renderDay();renderMonthly();renderGoals();renderSavings();save()}
+function resetForm(){editing=null;$("expenseForm").reset();$("expenseDate").value=selected;$("submitExpense").textContent="＋ تسجيل المصروف";$("formTitle").textContent="إضافة مصروف جديد";$("cancelEdit").hidden=true}
+function editExpense(id){let e=state.expenses.find(x=>x.id===id);if(!e)return;editing=id;$("expenseDate").value=e.date;$("amount").value=e.amount;$("category").value=e.category;$("time").value=e.time||"";$("note").value=e.note||"";$("submitExpense").textContent="حفظ التعديل";$("formTitle").textContent="تعديل المصروف";$("cancelEdit").hidden=false;$("expenseForm").scrollIntoView({behavior:"smooth",block:"center"})}
+function deleteExpense(id){let e=state.expenses.find(x=>x.id===id);if(!e||!confirm("هل تريدين حذف هذا المصروف؟"))return;state.expenses=state.expenses.filter(x=>x.id!==id);Object.keys(state.settings.alerts).filter(k=>k.startsWith(e.date+":")).forEach(k=>delete state.settings.alerts[k]);save();renderAll();toast("تم حذف المصروف")}
+$("selectedDate").onchange=e=>{selected=e.target.value||today();resetForm();renderAll()};
+$("budgetDate").onchange=e=>{if(e.target.value){selected=e.target.value;renderAll()}};
+$("expenseDate").onchange=e=>{if(!editing&&e.target.value){selected=e.target.value;renderAll()}};
+$("saveBudget").onclick=()=>{let d=$("budgetDate").value||selected;state.budgets[d]=num($("dailyBudget").value);state.details[d]={mood:$("mood").value,note:$("dayNote").value.trim()};state.savings=num($("savingsToday").value);selected=d;save();renderAll();toast("تم حفظ تفاصيل اليوم")};
+$("copyYesterday").onclick=()=>{let d=dt(selected);d.setDate(d.getDate()-1);let y=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;state.budgets[selected]=budgetFor(y);state.details[selected]={...(state.details[y]||{})};save();renderAll();toast("تم نسخ ميزانية أمس")};
+$("expenseForm").onsubmit=e=>{e.preventDefault();let amount=num($("amount").value);if(!amount)return toast("أدخلي مبلغًا صحيحًا");let d=$("expenseDate").value||selected,item={id:editing||uid(),date:d,amount,category:$("category").value,time:$("time").value,note:$("note").value.trim()};if(editing)state.expenses=state.expenses.map(x=>x.id===editing?item:x);else state.expenses.push(item);selected=d;state.budgets[d]=state.budgets[d]===undefined?650:state.budgets[d];Object.keys(state.settings.alerts).filter(k=>k.startsWith(d+":")).forEach(k=>delete state.settings.alerts[k]);$("historyMonth").value=d.slice(0,7);resetForm();save();renderAll();toast(editing?"تم تعديل المصروف":"تم تسجيل المصروف بنجاح")};
+$("cancelEdit").onclick=resetForm;
+$("historyMonth").onchange=renderDays;$("statsMonth").onchange=renderMonthly;
+$("savePay").onclick=()=>{state.payDate=$("payDate").value;save();renderPay();toast("تم حفظ موعد الراتب")};
+$("saveSettings").onclick=()=>{state.monthlyBudget=num($("monthlyBudget").value);state.settings.threshold=Number($("threshold").value)||70;state.settings.morning=$("morning").value||"08:00";state.settings.evening=$("evening").value||"20:30";save();renderAll();toast("تم حفظ إعدادات التتبع")};
+$("saveSavings").onclick=()=>{state.savings=num($("savings").value);state.emergency=num($("emergency").value);state.emergencyGoal=num($("emergencyGoal").value);save();renderAll();toast("تم تحديث المدخرات")};
+$("addGoal").onclick=()=>{let name=prompt("ما اسم الهدف الجديد؟");if(!name||!name.trim())return;let cost=num(prompt("ما التكلفة المتوقعة بالدينار؟","5000"));state.goals.push({id:uid(),name:name.trim(),emoji:"✨",cost,saved:0});save();renderGoals();toast("أُضيف الهدف")};
+$("notify").onclick=async()=>{if(!("Notification"in window))return toast("متصفحك لا يدعم إشعارات النظام؛ التنبيهات داخل الموقع ما زالت تعمل");try{let p=await Notification.requestPermission();state.settings.notify=p==="granted";save();if(p==="granted"){new Notification("أهلًا بكِ في Velora 🤎",{body:"سأساعدكِ على متابعة ميزانيتكِ أثناء فتح الصفحة."});toast("تم تفعيل إشعارات المتصفح")}else toast("لم تُفعّل الإشعارات. راجعي إعدادات المتصفح")}catch{toast("تعذّر تفعيل الإشعارات")}};
+$("export").onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="velora-backup-"+today()+".json";a.click();URL.revokeObjectURL(url);toast("تم تصدير نسخة احتياطية")};
+$("import").onclick=()=>$("file").click();
+$("file").onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let obj=JSON.parse(await f.text());if(!Array.isArray(obj.expenses)||!obj.budgets)throw Error();if(confirm("سيتم استبدال البيانات الحالية بالنسخة المختارة. هل تتابعين؟")){state={...defaults(),...obj};state.settings={...defaults().settings,...(obj.settings||{})};save();renderAll();toast("تم استيراد النسخة")}}catch{toast("الملف غير صالح كنسخة Velora")}e.target.value=""};
+$("reset").onclick=()=>{if(confirm("سيتم حذف كل الميزانيات والمصروفات والأهداف المحفوظة. هل أنتِ متأكدة؟")){state=defaults();selected=today();resetForm();renderAll();toast("تمت إعادة الضبط")}};
+function reminders(){let d=today(),now=new Date(),hm=String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0");for(let [k,t,msg] of [["morning",state.settings.morning,"صباح الخير 🤎 حددي ميزانية اليوم قبل أن تبدئي."],["evening",state.settings.evening,"مراجعة المساء: صرفتِ "+money(sum(expensesFor(d)))+" اليوم."]]){let key=d+":"+k;if(hm===t&&!state.settings.reminders[key]){state.settings.reminders[key]=true;alertUser("تذكير Velora",msg,key);save()}}}
+function init(){let d=today();if(state.budgets[d]===undefined)state.budgets[d]=650;if(!state.expenses.some(e=>e.date===d)&&!state.seeded){state.expenses.push({id:uid(),date:d,amount:20,category:"باص",time:"",note:"مصروف باص مبدئي — عدّليه أو احذفيه إذا لم يحدث اليوم"});state.seeded=true}
+ $("selectedDate").value=d;$("budgetDate").value=d;$("expenseDate").value=d;$("historyMonth").value=monthNow();$("statsMonth").value=monthNow();$("payDate").value=state.payDate||"";$("monthlyBudget").value=state.monthlyBudget;$("threshold").value=String(state.settings.threshold);$("morning").value=state.settings.morning;$("evening").value=state.settings.evening;renderAll();reminders();setInterval(()=>{renderPay();reminders()},30000)}
+init();
+})();
 </script>
 </body>
 </html>
